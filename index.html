@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DM Gaming News - Der maximale Drift!</title>
+    <style>
+        /* --- BRANDING & FARBEN --- */
+        :root {
+            --neon-purple: #bd00ff;
+            --neon-cyan: #00f0ff;
+            --text-gold: #ffcc00;
+            --text-white: #ffffff;
+        }
+
+        /* --- BASIC SETUP --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* --- DYNAMISCHER PLASMA-WELTRAUM-HINTERGRUND --- */
+        body {
+            margin: 0;
+            width: 100vw;
+            min-height: 100vh;
+            color: var(--text-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+            
+            background: linear-gradient(125deg, #0b0c10, #1f0033, #002b3d, #0b0c10);
+            background-size: 400% 400%;
+            animation: space-drift 15s ease infinite;
+        }
+
+        @keyframes space-drift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- MAIN DASHBOARD CONTAINER --- */
+        .profile-container {
+            background: rgba(10, 11, 14, 0.85);
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(189, 0, 255, 0.5);
+            border-radius: 20px;
+            padding: 45px 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            margin-bottom: 60px; /* Platz für den Ticker unten */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: container-glow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes container-glow {
+            0% { box-shadow: 0 0 25px rgba(189, 0, 255, 0.4); }
+            100% { box-shadow: 0 0 40px rgba(0, 240, 255, 0.6); border-color: var(--neon-cyan); }
+        }
+
+        /* --- LOGO TEXT --- */
+        .logo-box h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-style: italic;
+            text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-cyan);
+            margin-bottom: 5px;
+        }
+
+        .logo-box span {
+            color: var(--neon-cyan);
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-shadow: 0 0 8px var(--neon-cyan);
+        }
+
+        .creator-title {
+            color: var(--text-gold);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            margin-bottom: 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- LINK BUTTONS --- */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .drift-button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            text-decoration: none;
+            color: var(--text-white);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .drift-button:hover {
+            background: var(--neon-purple);
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px var(--neon-purple), 0 0 10px var(--neon-cyan);
+            transform: scale(1.04) translateY(-3px);
+        }
+
+        /* --- ANIMIERTER LIVE-TICKER --- */
+        .ticker-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #000000;
+            border-top: 3px solid var(--neon-purple);
+            padding: 12px 0;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .ticker-text {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: drift-animation 22s linear infinite;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+        }
+
+        .ticker-text span {
+            color: var(--text-gold);
+        }
+
+        @keyframes drift-animation {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <div class="logo-box">
+            <h1>DM Gaming</h1>
+            <span>NEWS</span>
+        </div>
+        
+        <div class="creator-title">⚡ LEUTE, IHR SEID ABSOLUT AUF MAXIMAL-DRIFT! ⚡</div>
+
+        <div class="links-wrapper">
+            <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="drift-button">🏁 YouTube Hauptkanal</a>
+            <a href="https://www.tiktok.com/@deadmasterpr?is_from_webapp=1&sender_device=pc" target="_blank" class="drift-button">📱 TikTok Drift-Feed</a>
+<a href="https://www.instagram.com/dmgaming_news_drift_/" target="_blank" class="drift-button">📸 Instagram Reels</a>
+            <a href="#" class="drift-button">🌌 Desktop Wallpaper (Free Download)</a>
+        </div>
+    </div>
+
+    <div class="ticker-wrapper">
+        <div class="ticker-text">
+            LIVE-NEWS: SUBNAUTICA 2 REKORD-LAUNCH MIT 2 MIO. SALES! 🌊 +++ GTA VI LEAK VERSPRICHT PRE-ORDERS AM MONTAG! 🚔 +++ <span>THE DEADMASTER DRIFT: JOIN THE 1K CREW!</span> +++ +++ Tägliche Gaming News Für Euch !!
+        </div>
+    </div>
+
+</body>
+</html>
