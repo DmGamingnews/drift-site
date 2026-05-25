@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DM Gaming News - Der maximale Drift!</title>
-    <link rel="icon" type="image/png" href="favicon.png.png">
+    <link type="image/png" href="favicon.png.png" rel="icon">
     <style>
         :root {
             --neon-purple: #bd00ff;
             --neon-cyan: #00f0ff;
             --text-gold: #ffcc00;
             --text-white: #ffffff;
-            --panel-bg: rgba(14, 10, 20, 0.85);
+            --panel-bg: rgba(10, 5, 18, 0.9); /* Noch düsterer für den Cyberpunk-Vibe */
         }
 
         * {
@@ -22,24 +22,30 @@
             scroll-behavior: smooth;
         }
 
+        /* --- MAXIMALES CYBERPUNK BACKGROUND-TUNING --- */
         body {
             margin: 0;
             width: 100vw;
             min-height: 100vh;
             color: var(--text-white);
-            background: radial-gradient(circle at 5% 30%, rgba(147, 51, 234, 0.25), transparent 40%),
-                        radial-gradient(circle at 95% 70%, rgba(147, 51, 234, 0.25), transparent 40%),
-                        linear-gradient(125deg, #0b0c10, #1f0033, #002b3d, #0b0c10);
-            background-size: 400% 400%;
-            animation: space-drift 15s ease infinite;
+            background-color: #05020a;
+            /* Das pulsierende Neon-Leuchten hinter der Stadt-Matrix */
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(189, 0, 255, 0.2), transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(0, 240, 255, 0.15), transparent 45%),
+                /* Das rasant animierte Cyberpunk Neon-Grid (Die Drift-Straße!) */
+                linear-gradient(rgba(189, 0, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(189, 0, 255, 0.08) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            animation: grid-drift 20s linear infinite;
             overflow-x: hidden;
             padding-bottom: 90px;
         }
 
-        @keyframes space-drift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Die Animation, die das Hintergrund-Grid flüssig nach unten sausen lässt! */
+        @keyframes grid-drift {
+            0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+            100% { background-position: 0% 0%, 0% 0%, 0% 1000px, 0% 0%; }
         }
 
         /* --- OBERE NAVIGATIONSLEISTE --- */
@@ -52,16 +58,17 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 30px;
-            background: rgba(10, 11, 14, 0.95);
+            background: rgba(5, 2, 10, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(189, 0, 255, 0.4);
+            border-bottom: 2px solid var(--neon-purple);
             z-index: 1000;
+            box-shadow: 0 5px 25px rgba(189, 0, 255, 0.3);
         }
 
         .nav-logo { display: flex; align-items: center; gap: 12px; }
         .nav-logo img { width: 28px; height: 28px; object-fit: contain; }
-        .nav-logo span { font-weight: 900; letter-spacing: 1.5px; color: var(--text-white); text-shadow: 0 0 8px var(--neon-purple); font-size: 16px; }
+        .nav-logo span { font-weight: 900; letter-spacing: 1.5px; color: var(--text-white); text-shadow: 0 0 10px var(--neon-purple); font-size: 16px; }
         .nav-links { display: flex; gap: 20px; }
         .nav-item { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; transition: all 0.2s ease; padding: 5px 10px; border-radius: 4px; }
         .nav-item:hover, .nav-item.active { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); background: rgba(0, 240, 255, 0.1); }
@@ -69,14 +76,14 @@
         /* --- SEKTIONS-STYLES --- */
         .section-title {
             font-size: 26px; font-weight: 800; letter-spacing: 1.5px; border-left: 5px solid var(--neon-cyan);
-            padding-left: 15px; text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            padding-left: 15px; text-transform: uppercase; text-shadow: 0 0 15px var(--neon-cyan);
             margin: 60px auto 20px auto; max-width: 1400px;
         }
 
         .content-block-wide {
             max-width: 1400px; margin: 0 auto 40px auto; padding: 35px;
             background: var(--panel-bg); border: 2px solid var(--neon-purple);
-            border-radius: 14px; box-shadow: 0 0 25px rgba(189, 0, 255, 0.15); backdrop-filter: blur(10px);
+            border-radius: 14px; box-shadow: 0 0 30px rgba(189, 0, 255, 0.2); backdrop-filter: blur(15px);
         }
 
         .article-meta { color: var(--neon-cyan); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
@@ -84,7 +91,6 @@
         .article-text p { color: rgba(255, 255, 255, 0.85); line-height: 1.7; font-size: 16px; margin-bottom: 15px; }
         .article-text h4 { color: var(--text-white); font-size: 18px; font-weight: 800; margin: 25px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(189, 0, 255, 0.3); padding-bottom: 5px; }
 
-        /* Grid für die Videos */
         .profi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -103,7 +109,7 @@
         }
 
         .main-content-block { display: flex; flex-direction: column; gap: 30px; }
-        .main-video-card { background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 14px; overflow: hidden; box-shadow: 0 0 25px rgba(189, 0, 255, 0.25); }
+        .main-video-card { background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 14px; overflow: hidden; box-shadow: 0 0 30px rgba(189, 0, 255, 0.3); }
         .video-thumbnail-container { width: 100%; height: 440px; position: relative; overflow: hidden; background: #000; border-bottom: 2px solid rgba(189, 0, 255, 0.4); }
         .video-description { padding: 30px; }
         .video-description .tag { background: rgba(189, 0, 255, 0.25); color: #e066ff; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; border: 1px solid var(--neon-purple); display: inline-block; margin-bottom: 15px; }
@@ -111,25 +117,25 @@
         .video-description p { color: rgba(255, 255, 255, 0.75); line-height: 1.6; font-size: 15px; }
 
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
-        .drift-button { display: block; width: 100%; padding: 18px; background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 10px; color: var(--text-white); text-decoration: none; font-weight: 700; text-align: center; font-size: 16px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .drift-button:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-3px) scale(1.01); box-shadow: 0 0 20px rgba(0, 240, 255, 0.4); }
+        .drift-button { display: block; width: 100%; padding: 18px; background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 10px; color: var(--text-white); text-decoration: none; font-weight: 700; text-align: center; font-size: 16px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .drift-button:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-3px) scale(1.01); box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
 
         .side-news-block { display: flex; flex-direction: column; gap: 20px; }
-        .side-news-block h2 { font-size: 18px; font-weight: 800; border-left: 4px solid var(--neon-cyan); padding-left: 12px; text-transform: uppercase; margin-bottom: 5px; }
+        .side-news-block h2 { font-size: 18px; font-weight: 800; border-left: 4px solid var(--neon-cyan); padding-left: 12px; text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 0 10px var(--neon-cyan); }
 
         .grid-card { background: var(--panel-bg); border: 2px solid rgba(189, 0, 255, 0.3); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; text-decoration: none; }
-        .grid-card:hover { transform: translateY(-5px); border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.25); }
+        .grid-card:hover { transform: translateY(-5px); border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.35); }
         .card-thumbnail { width: 100%; height: 160px; background-size: cover; background-position: center; border-bottom: 2px solid rgba(189, 0, 255, 0.2); }
         .card-content { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
         .card-tag { align-self: flex-start; background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--neon-cyan); }
         .card-content h3 { color: var(--text-white); font-size: 15px; font-weight: 700; line-height: 1.4; }
 
         .merch-card { background: rgba(20, 15, 30, 0.7); border: 1px solid rgba(189, 0, 255, 0.4); border-radius: 10px; padding: 20px; text-align: center; transition: all 0.3s ease; }
-        .merch-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); transform: translateY(-3px); }
+        .merch-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.3); transform: translateY(-3px); }
         .merch-icon { font-size: 50px; margin-bottom: 15px; display: block; }
         .merch-price { color: var(--text-gold); font-weight: 800; font-size: 18px; margin: 10px 0; }
 
-        .ticker-wrapper { position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; border-top: 3px solid var(--neon-cyan); padding: 14px 0; z-index: 2000; overflow: hidden; }
+        .ticker-wrapper { position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; border-top: 3px solid var(--neon-cyan); padding: 14px 0; z-index: 2000; overflow: hidden; box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.4); }
         .ticker-text { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker-drift 30s linear infinite; font-weight: 700; font-size: 14px; color: var(--text-white); }
         .ticker-text span { color: var(--text-gold); }
         @keyframes ticker-drift { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
