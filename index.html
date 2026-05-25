@@ -9,6 +9,7 @@
         :root {
             --neon-purple: #bd00ff;
             --neon-cyan: #00f0ff;
+            --neon-red: #ff0055;
             --text-gold: #ffcc00;
             --text-white: #ffffff;
             --panel-bg: rgba(10, 5, 18, 0.9);
@@ -64,7 +65,41 @@
         .nav-logo { display: flex; align-items: center; gap: 12px; }
         .nav-logo img { width: 28px; height: 28px; object-fit: contain; }
         .nav-logo span { font-weight: 900; letter-spacing: 1.5px; color: var(--text-white); text-shadow: 0 0 10px var(--neon-purple); font-size: 16px; }
-        .nav-links { display: flex; gap: 20px; }
+        
+        /* --- BRANDNEUER PULSIERENDER LIVE INDIKATOR --- */
+        .live-indicator-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 0, 85, 0.1);
+            border: 1px solid var(--neon-red);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--neon-red);
+            text-shadow: 0 0 5px var(--neon-red);
+            box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
+            margin-left: 10px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-red);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7);
+            animation: pulse-animation 1.6s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+
+        @keyframes pulse-animation {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 0, 85, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
+        }
+
+        .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-item { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; transition: all 0.2s ease; padding: 5px 10px; border-radius: 4px; }
         .nav-item:hover, .nav-item.active { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); background: rgba(0, 240, 255, 0.1); }
 
@@ -80,48 +115,30 @@
             border-radius: 14px; box-shadow: 0 0 30px rgba(189, 0, 255, 0.2); backdrop-filter: blur(15px);
         }
 
-        /* --- ZWEISPALTIGES REDAKTIONS-GRID --- */
-        .redaktion-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-        }
+        .redaktion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
+        @media (max-width: 900px) { .redaktion-grid { grid-template-columns: 1fr; } }
 
-        @media (max-width: 900px) {
-            .redaktion-grid { grid-template-columns: 1fr; }
-        }
-
-        .article-box {
-            background: rgba(5, 2, 10, 0.4);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(189, 0, 255, 0.2);
-        }
-
+        .article-box { background: rgba(5, 2, 10, 0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(189, 0, 255, 0.2); }
         .article-meta { color: var(--neon-cyan); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
         .article-lead { font-size: 16px; font-weight: 700; color: var(--text-gold); line-height: 1.5; margin-bottom: 20px; }
         .article-text p { color: rgba(255, 255, 255, 0.85); line-height: 1.7; font-size: 15px; margin-bottom: 15px; }
         .article-text h4 { color: var(--text-white); font-size: 17px; font-weight: 800; margin: 25px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(189, 0, 255, 0.3); padding-bottom: 5px; }
 
-        .profi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
+        .profi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 20px; }
 
-        .dashboard-container {
-            max-width: 1450px; margin: 110px auto 10px auto; padding: 0 25px;
-            display: grid; grid-template-columns: 2.2fr 1.1fr; gap: 30px;
-        }
-
-        @media (max-width: 1024px) {
-            .dashboard-container { grid-template-columns: 1fr; }
-        }
+        .dashboard-container { max-width: 1450px; margin: 110px auto 10px auto; padding: 0 25px; display: grid; grid-template-columns: 2.2fr 1.1fr; gap: 30px; }
+        @media (max-width: 1024px) { .dashboard-container { grid-template-columns: 1fr; } }
 
         .main-content-block { display: flex; flex-direction: column; gap: 30px; }
         .main-video-card { background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 14px; overflow: hidden; box-shadow: 0 0 30px rgba(189, 0, 255, 0.3); }
         .video-thumbnail-container { width: 100%; height: 440px; position: relative; overflow: hidden; background: #000; border-bottom: 2px solid rgba(189, 0, 255, 0.4); }
+        .video-description { padding: 30px; position: relative; }
+
+        /* LIVE FLAG FÜR DEN KANALTRAILER */
+        .trailer-live-tag {
+            position: absolute; top: 30px; right: 30px; display: flex; align-items: center; gap: 6px;
+            font-size: 12px; font-weight: 900; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan);
+        }
 
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
         .drift-button { display: block; width: 100%; padding: 18px; background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 10px; color: var(--text-white); text-decoration: none; font-weight: 700; text-align: center; font-size: 16px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
@@ -154,6 +171,10 @@
         <div class="nav-logo">
             <img src="favicon.png.png" alt="DG Logo">
             <span>DM GAMING NEWS</span>
+            <div class="live-indicator-badge">
+                <div class="pulse-dot"></div>
+                <span>LIVE ON AIR</span>
+            </div>
         </div>
         <nav class="nav-links">
             <a href="#home" class="nav-item">Home</a>
@@ -174,6 +195,10 @@
                 </div>
                 <div class="video-description">
                     <h2>Willkommen bei DM Gaming News – Join the Crew! 🏎️💨</h2>
+                    <div class="trailer-live-tag">
+                        <div class="pulse-dot" style="background-color: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); animation: none;"></div>
+                        <span>BROADCASTING LIVE</span>
+                    </div>
                 </div>
             </div>
 
@@ -225,7 +250,7 @@
                 <div class="article-text">
                     <p>Die Unreal Engine 5 zaubert fotorealistische Welten auf unsere Monitore, doch der Hardware-Hunger ist absolut brutal. Selbst eine werksübertaktete RTX 4090 fängt bei nativem 1440p oder 4K in aktuellen Tech-Demos unbarmherzig an zu schwitzen, sobald maximale Raytracing-Effekte gezündet werden.</p>
                     <h4>Macht-Kampf um jeden Frame</h4>
-                    <p>Ohne KI-Upscaling wie DLSS oder Frame Generation läuft auf dem Asphalt fast gar nichts mehr flüssig. Entwickler optimieren am Limit, doch der VRM-Verbrauch schießt durch die Decke. Wer die maximale Grafikpracht ohne Ruckler genießen will, muss seine Kiste bis aufs Letzte optimieren und die Power-Limits perfekt im Auge behalten!</p>
+                    <p>Ohne KI-Upscaling wie DLSS oder Frame Generation läuft auf dem Asphalt fast gar nichts mehr flüssig. Entwickler optimieren am Limit, doch der VRM-Verbrauch schießt durch die Decke. Wer die maximale Grafikpracht ohne Ruckler genießen will, muss seine Kiste bis aufs Letzte optimieren!</p>
                 </div>
             </div>
 
