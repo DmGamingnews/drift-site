@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DM Gaming News - Der maximale Drift!</title>
-    <link rel="icon" type="image/png" href="favicon.png.png">
+    <link type="image/png" href="favicon.png.png" rel="icon">
     <style>
         :root {
             --neon-purple: #bd00ff;
             --neon-cyan: #00f0ff;
             --text-gold: #ffcc00;
             --text-white: #ffffff;
-            --panel-bg: rgba(14, 10, 20, 0.85);
+            --panel-bg: rgba(10, 5, 18, 0.9);
         }
 
         * {
@@ -27,22 +27,23 @@
             width: 100vw;
             min-height: 100vh;
             color: var(--text-white);
-            background: radial-gradient(circle at 5% 30%, rgba(147, 51, 234, 0.25), transparent 40%),
-                        radial-gradient(circle at 95% 70%, rgba(147, 51, 234, 0.25), transparent 40%),
-                        linear-gradient(125deg, #0b0c10, #1f0033, #002b3d, #0b0c10);
-            background-size: 400% 400%;
-            animation: space-drift 15s ease infinite;
+            background-color: #05020a;
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(189, 0, 255, 0.2), transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(0, 240, 255, 0.15), transparent 45%),
+                linear-gradient(rgba(189, 0, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(189, 0, 255, 0.08) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            animation: grid-drift 20s linear infinite;
             overflow-x: hidden;
             padding-bottom: 90px;
         }
 
-        @keyframes space-drift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes grid-drift {
+            0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+            100% { background-position: 0% 0%, 0% 0%, 0% 1000px, 0% 0%; }
         }
 
-        /* --- OBERE NAVIGATIONSLEISTE --- */
         .main-header {
             width: 100%;
             position: fixed;
@@ -52,31 +53,31 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 30px;
-            background: rgba(10, 11, 14, 0.95);
+            background: rgba(5, 2, 10, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(189, 0, 255, 0.4);
+            border-bottom: 2px solid var(--neon-purple);
             z-index: 1000;
+            box-shadow: 0 5px 25px rgba(189, 0, 255, 0.3);
         }
 
         .nav-logo { display: flex; align-items: center; gap: 12px; }
         .nav-logo img { width: 28px; height: 28px; object-fit: contain; }
-        .nav-logo span { font-weight: 900; letter-spacing: 1.5px; color: var(--text-white); text-shadow: 0 0 8px var(--neon-purple); font-size: 16px; }
+        .nav-logo span { font-weight: 900; letter-spacing: 1.5px; color: var(--text-white); text-shadow: 0 0 10px var(--neon-purple); font-size: 16px; }
         .nav-links { display: flex; gap: 20px; }
         .nav-item { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; transition: all 0.2s ease; padding: 5px 10px; border-radius: 4px; }
         .nav-item:hover, .nav-item.active { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); background: rgba(0, 240, 255, 0.1); }
 
-        /* --- SEKTIONS-STYLES --- */
         .section-title {
             font-size: 26px; font-weight: 800; letter-spacing: 1.5px; border-left: 5px solid var(--neon-cyan);
-            padding-left: 15px; text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            padding-left: 15px; text-transform: uppercase; text-shadow: 0 0 15px var(--neon-cyan);
             margin: 60px auto 20px auto; max-width: 1400px;
         }
 
         .content-block-wide {
             max-width: 1400px; margin: 0 auto 40px auto; padding: 35px;
             background: var(--panel-bg); border: 2px solid var(--neon-purple);
-            border-radius: 14px; box-shadow: 0 0 25px rgba(189, 0, 255, 0.15); backdrop-filter: blur(10px);
+            border-radius: 14px; box-shadow: 0 0 30px rgba(189, 0, 255, 0.2); backdrop-filter: blur(15px);
         }
 
         .article-meta { color: var(--neon-cyan); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
@@ -84,7 +85,6 @@
         .article-text p { color: rgba(255, 255, 255, 0.85); line-height: 1.7; font-size: 16px; margin-bottom: 15px; }
         .article-text h4 { color: var(--text-white); font-size: 18px; font-weight: 800; margin: 25px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(189, 0, 255, 0.3); padding-bottom: 5px; }
 
-        /* Grid für die Videos */
         .profi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -92,7 +92,6 @@
             margin-top: 20px;
         }
 
-        /* --- DASHBOARD-CONTAINER (HOME) --- */
         .dashboard-container {
             max-width: 1450px; margin: 110px auto 10px auto; padding: 0 25px;
             display: grid; grid-template-columns: 2.2fr 1.1fr; gap: 30px;
@@ -103,33 +102,30 @@
         }
 
         .main-content-block { display: flex; flex-direction: column; gap: 30px; }
-        .main-video-card { background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 14px; overflow: hidden; box-shadow: 0 0 25px rgba(189, 0, 255, 0.25); }
+        .main-video-card { background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 14px; overflow: hidden; box-shadow: 0 0 30px rgba(189, 0, 255, 0.3); }
         .video-thumbnail-container { width: 100%; height: 440px; position: relative; overflow: hidden; background: #000; border-bottom: 2px solid rgba(189, 0, 255, 0.4); }
         .video-description { padding: 30px; }
-        .video-description .tag { background: rgba(189, 0, 255, 0.25); color: #e066ff; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; border: 1px solid var(--neon-purple); display: inline-block; margin-bottom: 15px; }
-        .video-description h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
-        .video-description p { color: rgba(255, 255, 255, 0.75); line-height: 1.6; font-size: 15px; }
 
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
-        .drift-button { display: block; width: 100%; padding: 18px; background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 10px; color: var(--text-white); text-decoration: none; font-weight: 700; text-align: center; font-size: 16px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .drift-button:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-3px) scale(1.01); box-shadow: 0 0 20px rgba(0, 240, 255, 0.4); }
+        .drift-button { display: block; width: 100%; padding: 18px; background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 10px; color: var(--text-white); text-decoration: none; font-weight: 700; text-align: center; font-size: 16px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .drift-button:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-3px) scale(1.01); box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
 
         .side-news-block { display: flex; flex-direction: column; gap: 20px; }
-        .side-news-block h2 { font-size: 18px; font-weight: 800; border-left: 4px solid var(--neon-cyan); padding-left: 12px; text-transform: uppercase; margin-bottom: 5px; }
+        .side-news-block h2 { font-size: 18px; font-weight: 800; border-left: 4px solid var(--neon-cyan); padding-left: 12px; text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 0 10px var(--neon-cyan); }
 
         .grid-card { background: var(--panel-bg); border: 2px solid rgba(189, 0, 255, 0.3); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; text-decoration: none; }
-        .grid-card:hover { transform: translateY(-5px); border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.25); }
+        .grid-card:hover { transform: translateY(-5px); border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.35); }
         .card-thumbnail { width: 100%; height: 160px; background-size: cover; background-position: center; border-bottom: 2px solid rgba(189, 0, 255, 0.2); }
         .card-content { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
         .card-tag { align-self: flex-start; background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--neon-cyan); }
         .card-content h3 { color: var(--text-white); font-size: 15px; font-weight: 700; line-height: 1.4; }
 
         .merch-card { background: rgba(20, 15, 30, 0.7); border: 1px solid rgba(189, 0, 255, 0.4); border-radius: 10px; padding: 20px; text-align: center; transition: all 0.3s ease; }
-        .merch-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); transform: translateY(-3px); }
+        .merch-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.3); transform: translateY(-3px); }
         .merch-icon { font-size: 50px; margin-bottom: 15px; display: block; }
         .merch-price { color: var(--text-gold); font-weight: 800; font-size: 18px; margin: 10px 0; }
 
-        .ticker-wrapper { position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; border-top: 3px solid var(--neon-cyan); padding: 14px 0; z-index: 2000; overflow: hidden; }
+        .ticker-wrapper { position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; border-top: 3px solid var(--neon-cyan); padding: 14px 0; z-index: 2000; overflow: hidden; box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.4); }
         .ticker-text { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker-drift 30s linear infinite; font-weight: 700; font-size: 14px; color: var(--text-white); }
         .ticker-text span { color: var(--text-gold); }
         @keyframes ticker-drift { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
@@ -139,7 +135,7 @@
 
     <header class="main-header">
         <div class="nav-logo">
-            <img src="favicon.png.png.png" alt="DG Logo">
+            <img src="favicon.png.png" alt="DG Logo">
             <span>DM GAMING NEWS</span>
         </div>
         <nav class="nav-links">
@@ -179,15 +175,15 @@
             <a href="https://youtube.com/shorts/wjyaX-3kFrM" target="_blank" class="grid-card">
                 <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/wjyaX-3kFrM/hqdefault.jpg');"></div>
                 <div class="card-content">
-                    <span class="card-tag">GTA 6 Breaking</span>
-                    <h3>GTA 6 VORBESTELLUNG LIVE?! 🚨 Geheimer Händler-Leak kurz vor dem heutigen Take-Two Mega-Beben!</h3>
+                    <span class="card-tag">GTA 6 Preorder</span>
+                    <h3>GTA 6 VORBESTELLUNG LIVE?! 🚨 Geheimer Händler-Leak kurz vor Take-Two Mega-Beben!</h3>
                 </div>
             </a>
-            <a href="https://youtube.com/shorts/ZpkSP8ijhVc" target="_blank" class="grid-card">
-                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/ZpkSP8ijhVc/hqdefault.jpg');"></div>
+            <a href="https://youtube.com/shorts/a4sh881qHF8" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/a4sh881qHF8/hqdefault.jpg');"></div>
                 <div class="card-content">
-                    <span class="card-tag">Fable 2026</span>
-                    <h3>FABLE 2026 schockt Fans! 😱 Größtes Feature GELÖSCHT!</h3>
+                    <span class="card-tag">GTA 6 Breaking</span>
+                    <h3>GTA 6 Review-Sperre! Take-Two greift brutal durch! 🚨</h3>
                 </div>
             </a>
         </div>
@@ -200,12 +196,12 @@
         <h3>Tauchgang des Grauens: Alle Leviathane enthüllt & warum der Koop-Modus brandgefährlich wird!</h3>
         <div class="article-lead" style="margin-top: 15px;">Die Ozeane auf dem neuen Planeten von Subnautica 2 bergen Geheimnisse, die selbst hartgesottenen Survival-Veteranen das Blut in den Adern gefrieren lassen. Exklusive Datamining-Leaks enthüllen gigantische neue Monster – doch die größte Gefahr droht überraschend aus den eigenen Reihen!</div>
         <div class="article-text">
-            <p>Die Community brennt! Nach den neuesten Informationen aus Entwicklerkreisen steht fest: Subnautica 2 wird nicht nur grafisch dank der Unreal Engine 5 ein absolutes Brett, sondern auch in Sachen Survival-Druck massiv anziehen.</p>
+            <p>Die Community brennt! Nach den neuesten Informationen aus Entwicklerkreisen steht fest: Subnautica 2 wird nicht nur grafisch dank der Unreal Engine 5 ein absolutes Brett, sondern auch in Sachen Survival-Druck massiv anziehen. Die Tiefseegräben des neuen Planeten sind tiefer, dunkler und deutlich aggressiver besiedelt als alles, was wir bisher aus dem 4546B-System kannten.</p>
             <h4>Die neuen Herrscher der Tiefe: Giganten im Check</h4>
-            <p>Vergiss den Reaper oder den Ghost Leviathan! Die Leaks zeigen gigantische, biolumineszierende Albtraum-Kreaturen, die in den extremen Tiefen lauern. Besonders ein gigantischer, schlangenförmiger Leviathan – intern oft als „Phantomschlund“ bezeichnet – sorgt für Aufsehen.</p>
+            <p>Vergiss den Reaper oder den Ghost Leviathan! Die Leaks zeigen gigantische, biolumineszierende Albtraum-Kreaturen, die in den extremen Tiefen lauern. Besonders ein gigantischer, schlangenförmiger Leviathan – intern oft als „Phantomschlund“ bezeichnet – sorgt für Aufsehen. Diese Bestie nutzt hochentwickelte Tarnung und schlägt unangekündigt aus dem Nichts zu.</p>
             <h4>Der Koop-Modus: Absoluter Spielspaß oder pure Sabotage?</h4>
-            <p>Das absolute Highlight von Subnautica 2 ist der offizielle Koop-Modus für bis zu vier Spieler. Zusammen Basen bauen, Ressourcen teilen und die unendlichen Weiten erkunden klingt nach dem perfekten Plan. Doch genau hier lauert die Falle!</p>
-            <p>Mehrere Spieler bedeuten auch: **Mehr Lärm, mehr verbrauchte Ressourcen und eine deutlich höhere Aufmerksamkeit der Leviathane!** Wer im Koop unvorsichtig mit dem Seegleiter durch die Reviere heizt, lockt die Monster direkt zur eigenen Basis. Ein einziger unüberlegter Drift deines Kumpels kann die Arbeit von Stunden komplett vernichten!</p>
+            <p>Das absolute Highlight von Subnautica 2 ist der offizielle Koop-Modus für bis zu vier Spieler. Zusammen Basen bauen, Ressourcen teilen und die unendlichen Weiten erkunden klingt nach dem perfektem Plan. Doch genau hier lauert die Falle!</p>
+            <p>Mehrere Spieler bedeuten auch: **Mehr Lärm, mehr verbrauchte Ressourcen und eine deutlich höhere Aufmerksamkeit der Leviathane!** Wer im Koop unvorsichtig mit dem Seegleiter durch die Reviere heizt, lockt die Monster direkt zur eigenen Basis. Ein einziger unüberlegter Drift deines Kumpels kann die Arbeit von Stunden komplett vernichten! Tu das also niemals ohne einen klaren taktischen Plan im Team!</p>
         </div>
     </div>
 
@@ -215,7 +211,7 @@
         <div class="profi-grid">
             
             <a href="https://youtu.be/T9kHZnOF8Ws" target="_blank" class="grid-card">
-                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/T9kHZnOF8Ws/0.jpg');"></div>
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/T9kHZnOF8Ws/hqdefault.jpg');"></div>
                 <div class="card-content">
                     <span class="card-tag">NVIDIA News</span>
                     <h3>NVIDIA verbannt uns Gamer! 🛑 „Days of Play 2026“-Gaming News Am Sonntag</h3>
@@ -230,11 +226,11 @@
                 </div>
             </a>
 
-            <a href="https://youtube.com/shorts/ZpkSP8ijhVc" target="_blank" class="grid-card">
-                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/ZpkSP8ijhVc/hqdefault.jpg');"></div>
+            <a href="https://youtube.com/shorts/SH5JX-pm1Iw" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/SH5JX-pm1Iw/hqdefault.jpg');"></div>
                 <div class="card-content">
-                    <span class="card-tag">Fable 2026</span>
-                    <h3>FABLE 2026 schockt Fans! 😱 Größtes Feature GELÖSCHT!</h3>
+                    <span class="card-tag">Days of Play</span>
+                    <h3>Days of Play 2026 Mega-Check! 🎮 Exklusive Highlights!</h3>
                 </div>
             </a>
 
@@ -255,10 +251,10 @@
             </a>
 
             <a href="https://youtu.be/tka-Vw7XE_s" target="_blank" class="grid-card">
-                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/tka-Vw7XE_s/0.jpg');"></div>
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/tka-Vw7XE_s/hqdefault.jpg');"></div>
                 <div class="card-content">
                     <span class="card-tag">Hardware & RPG</span>
-                    <h3>Das Ende von Intel Arc? 🛑 Diablo 4 Lord of Hatred ist DA!</h3>
+                    <h3>Das Ende von Intel Arc? 🛑 Diablo 4 Lord of Hatred ist DA! | Gaming News 2026</h3>
                 </div>
             </a>
 
