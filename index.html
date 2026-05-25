@@ -41,7 +41,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- OBERE NAVIGATIONSLEISTE (HEADER) --- */
+        /* --- OBERE NAVIGATIONSLEISTE (HEADER FLIPPIG & BREIT) --- */
         .main-header {
             width: 100%;
             position: fixed;
@@ -50,13 +50,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
+            padding: 12px 30px;
             background: rgba(10, 11, 14, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--neon-purple);
+            border-bottom: 1px solid rgba(189, 0, 255, 0.4);
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .nav-logo {
@@ -66,42 +65,43 @@
         }
 
         .nav-logo img {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             object-fit: contain;
         }
 
         .nav-logo span {
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--text-white);
-            text-shadow: 0 0 10px var(--neon-purple);
+            text-shadow: 0 0 8px var(--neon-purple);
+            font-size: 16px;
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 20px;
         }
 
         .nav-item {
-            color: var(--text-white);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            padding: 6px 12px;
+            transition: all 0.2s ease;
+            padding: 5px 10px;
             border-radius: 4px;
         }
 
         .nav-item:hover, .nav-item.active {
             color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
+            text-shadow: 0 0 8px var(--neon-cyan);
             background: rgba(0, 240, 255, 0.1);
         }
 
-        /* --- DASHBOARD LAYOUT BILDER-VERSION --- */
+        /* --- DASHBOARD: KOMPAKT & ZENTRIERT (DEINE LIEBLINGS-GRÖSSE) --- */
         .dashboard-container {
             max-width: 1450px;
             margin: 110px auto 40px auto;
@@ -117,7 +117,7 @@
             }
         }
 
-        /* --- LINKER BEREICH: DEIN RECHTMÄSSIGER KANALTRAILER --- */
+        /* --- LINKER BEREICH: KANALTRAILER IM INTEGRAL-PLAYER --- */
         .main-content-block {
             display: flex;
             flex-direction: column;
@@ -131,51 +131,15 @@
             overflow: hidden;
             box-shadow: 0 0 25px rgba(189, 0, 255, 0.25);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .main-video-card:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
-            transform: translateY(-2px);
         }
 
         .video-thumbnail-container {
             width: 100%;
             height: 440px;
-            background-size: cover;
-            background-position: center;
-            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
-        }
-
-        .play-overlay {
-            width: 70px;
-            height: 70px;
-            background: rgba(189, 0, 255, 0.8);
-            border: 3px solid var(--neon-cyan);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            padding-left: 5px;
-            color: white;
-            box-shadow: 0 0 20px var(--neon-purple);
-            transition: all 0.3s ease;
-        }
-
-        .main-video-card:hover .play-overlay {
-            background: rgba(0, 240, 255, 0.9);
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 25px var(--neon-cyan);
-            transform: scale(1.1);
+            overflow: hidden;
+            background: #000;
+            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -245,7 +209,7 @@
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        /* --- RECHTER BEREICH: NEWS SIDEBAR (NUR 2 KACHELN!) --- */
+        /* --- RECHTER BEREICH: NEWS SIDEBAR --- */
         .side-news-block {
             display: flex;
             flex-direction: column;
@@ -378,16 +342,16 @@
         
         <div class="main-content-block">
             
-            <a href="https://youtu.be/6aS6yFRxg1w" target="_blank" class="main-video-card">
-                <div class="video-thumbnail-container" style="background-image: url('https://img.youtube.com/vi/6aS6yFRxg1w/maxresdefault.jpg');">
-                    <div class="play-overlay">▶</div>
+            <div class="main-video-card">
+                <div class="video-thumbnail-container">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6aS6yFRxg1w?autoplay=1&mute=1&loop=1&playlist=6aS6yFRxg1w&controls=1&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="object-fit: cover;"></iframe>
                 </div>
                 <div class="video-description">
                     <span class="tag">OFFIZIELLER KANALTRAILER</span>
                     <h2>Willkommen bei DM Gaming News – Join the Crew! 🏎️💨</h2>
                     <p>Das Imperium steht! Hier bist du mittendrin statt nur dabei. Zieh dir oben unseren brandneuen Trailer direkt auf dem Dashboard rein, nutze die Buttons darunter für den direkten Drift auf unsere Socials oder hol dir exklusive Angebote und Gratis-Wallpaper! Der Motor läuft – lass uns komplett abreißen!</p>
                 </div>
-            </a>
+            </div>
 
             <div class="links-wrapper">
                 <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="drift-button">🏁 YouTube Hauptkanal</a>
