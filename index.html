@@ -11,14 +11,15 @@
             --neon-cyan: #00f0ff;
             --text-gold: #ffcc00;
             --text-white: #ffffff;
-            --panel-bg: rgba(14, 10, 20, 0.85);
+            --panel-bg: rgba(10, 5, 18, 0.9); /* Tiefes Obsidian-Violett aus dem Entwurf */
+            --dark-bg: #05020a;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
@@ -26,22 +27,14 @@
             width: 100vw;
             min-height: 100vh;
             color: var(--text-white);
-            background: radial-gradient(circle at 5% 30%, rgba(147, 51, 234, 0.25), transparent 40%),
-                        radial-gradient(circle at 95% 70%, rgba(147, 51, 234, 0.25), transparent 40%),
-                        linear-gradient(125deg, #0b0c10, #1f0033, #002b3d, #0b0c10);
-            background-size: 400% 400%;
-            animation: space-drift 15s ease infinite;
+            background: radial-gradient(circle at 20% 20%, rgba(189, 0, 255, 0.15), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 240, 255, 0.1), transparent 50%),
+                        #05020a;
             overflow-x: hidden;
             padding-bottom: 90px;
         }
 
-        @keyframes space-drift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* --- OBERE NAVIGATIONSLEISTE (HEADER) --- */
+        /* --- NAVIGATION: EXTRA BREIT & CLEAN (1:1 DESIGN) --- */
         .main-header {
             width: 100%;
             position: fixed;
@@ -50,13 +43,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
-            background: rgba(10, 11, 14, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--neon-purple);
+            padding: 12px 30px; /* Schlanker und breiter */
+            background: rgba(6, 3, 10, 0.93);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(189, 0, 255, 0.4);
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .nav-logo {
@@ -66,280 +58,241 @@
         }
 
         .nav-logo img {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             object-fit: contain;
         }
 
         .nav-logo span {
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--text-white);
-            text-shadow: 0 0 10px var(--neon-purple);
+            text-shadow: 0 0 8px var(--neon-purple);
+            font-size: 16px;
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 20px;
         }
 
         .nav-item {
-            color: var(--text-white);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            padding: 6px 12px;
-            border-radius: 4px;
+            transition: all 0.2s ease;
+            padding: 5px 10px;
         }
 
         .nav-item:hover, .nav-item.active {
             color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.1);
+            text-shadow: 0 0 8px var(--neon-cyan);
         }
 
-        /* --- PROFI DASHBOARD-GRID --- */
+        /* --- KINO-OPTIK: DAS ULTRA-WIDE DASHBOARD GRID --- */
         .dashboard-container {
-            max-width: 1450px;
-            margin: 110px auto 40px auto;
-            padding: 0 25px;
+            width: 100%;
+            max-width: 1850px; /* Sprengt die alte Grenze für maximale Breite */
+            margin: 80px auto 20px auto;
+            padding: 0 30px;
             display: grid;
-            grid-template-columns: 2.2fr 1.1fr;
-            gap: 30px;
+            grid-template-columns: 1.8fr 1fr; /* Breitere Aufteilung für den Monitor-Effekt */
+            gap: 25px;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1150px) {
             .dashboard-container {
                 grid-template-columns: 1fr;
+                margin-top: 80px;
             }
         }
 
-        /* --- LINKER BEREICH: HAUPTVIDEO-BLOCK & SOCIALS --- */
+        /* --- LINKS: PLAY-ZONE & BUTTON-STRIP --- */
         .main-content-block {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .main-video-card {
-            background: var(--panel-bg);
-            border: 2px solid var(--neon-purple);
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 0 25px rgba(189, 0, 255, 0.25);
-            backdrop-filter: blur(10px);
-        }
-
-        .video-thumbnail-container {
-            width: 100%;
-            height: 440px;
-            background-size: cover;
-            background-position: center;
-            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .play-overlay {
-            width: 70px;
-            height: 70px;
-            background: rgba(189, 0, 255, 0.8);
-            border: 3px solid var(--neon-cyan);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            padding-left: 5px;
-            box-shadow: 0 0 20px var(--neon-purple);
-            transition: all 0.3s ease;
-        }
-
-        .main-video-card:hover .play-overlay {
-            background: rgba(0, 240, 255, 0.9);
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 25px var(--neon-cyan);
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 768px) {
-            .video-thumbnail-container { height: 260px; }
-        }
-
-        .video-description {
-            padding: 30px;
-        }
-
-        .video-description .tag {
-            background: rgba(189, 0, 255, 0.25);
-            color: #e066ff;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 5px 12px;
-            border-radius: 4px;
-            border: 1px solid var(--neon-purple);
-            display: inline-block;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .video-description h2 {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.1);
-        }
-
-        .video-description p {
-            color: rgba(255, 255, 255, 0.75);
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        .links-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .drift-button {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            background: var(--panel-bg);
-            border: 2px solid var(--neon-purple);
-            border-radius: 10px;
-            color: var(--text-white);
-            text-decoration: none;
-            font-weight: 700;
-            text-align: center;
-            font-size: 16px;
-            letter-spacing: 1px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .drift-button:hover {
-            border-color: var(--neon-cyan);
-            color: var(--neon-cyan);
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-        }
-
-        /* --- RECHTER BEREICH: NEWS SIDEBAR --- */
-        .side-news-block {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .side-news-block h2 {
-            font-size: 18px;
+        .main-video-card {
+            background: var(--panel-bg);
+            border: 1px solid rgba(189, 0, 255, 0.3);
+            border-radius: 6px; /* Etwas kantiger, wie auf dem Monitor */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .video-holder-frame {
+            width: 100%;
+            height: 520px; /* Mehr Höhe für die Widescreen-Präsenz */
+            background: #000;
+            border-bottom: 1px solid rgba(189, 0, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .video-holder-frame { height: 280px; }
+        }
+
+        .video-description {
+            padding: 20px 25px;
+        }
+
+        .video-description .tag {
+            background: rgba(189, 0, 255, 0.2);
+            color: #e066ff;
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 1.5px;
-            border-left: 4px solid var(--neon-cyan);
-            padding-left: 12px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            padding: 4px 8px;
+            border-radius: 3px;
+            border: 1px solid rgba(189, 0, 255, 0.5);
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .video-description h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .video-description p {
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* Die Social-Buttons flach und modern */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .drift-button {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: rgba(15, 8, 25, 0.8);
+            border: 1px solid rgba(189, 0, 255, 0.4);
+            border-radius: 6px;
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .drift-button:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        /* --- RECHTS: NEWS-LISTE (STRECK-EFFEKT) --- */
+        .side-news-block {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .side-news-block h2 {
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            border-left: 3px solid var(--neon-cyan);
+            padding-left: 10px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 5px;
         }
 
         .grid-card {
             background: var(--panel-bg);
-            border: 2px solid rgba(189, 0, 255, 0.3);
-            border-radius: 12px;
+            border: 1px solid rgba(189, 0, 255, 0.2);
+            border-radius: 6px;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.2s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Ändert das Layout auf Querformat wie im Entwurf! */
+            height: 115px; /* Kompakte Höhe für den gestreckten Look */
             text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
         }
 
         .grid-card:hover {
-            transform: translateY(-5px);
             border-color: var(--neon-cyan);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+            background: rgba(189, 0, 255, 0.05);
         }
 
         .card-thumbnail {
-            width: 100%;
-            height: 160px;
+            width: 180px; /* Feste Breite links in der Kachel */
+            height: 100%;
             background-size: cover;
             background-position: center;
-            border-bottom: 2px solid rgba(189, 0, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .grid-card:hover .card-thumbnail {
-            border-bottom-color: var(--neon-cyan);
+            flex-shrink: 0;
+            border-right: 1px solid rgba(189, 0, 255, 0.2);
         }
 
         .card-content {
-            padding: 18px;
+            padding: 12px 15px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            justify-content: center;
+            gap: 6px;
         }
 
         .card-tag {
             align-self: flex-start;
             background: rgba(0, 240, 255, 0.1);
             color: var(--neon-cyan);
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 800;
             text-transform: uppercase;
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 1px solid var(--neon-cyan);
-            letter-spacing: 0.5px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(0, 240, 255, 0.4);
         }
 
         .card-content h3 {
             color: var(--text-white);
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 700;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
-        /* --- LIVE NEWS TICKER UNTEN --- */
+        /* --- LIVE TICKER: RECHTMÄSSIG AM BODEN --- */
         .ticker-wrapper {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background: #000000;
-            border-top: 3px solid var(--neon-cyan);
-            padding: 14px 0;
+            border-top: 2px solid var(--neon-purple);
+            padding: 12px 0;
             z-index: 2000;
             overflow: hidden;
-            box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.3);
         }
 
         .ticker-text {
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: ticker-drift 30s linear infinite;
+            animation: ticker-drift 32s linear infinite;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
             color: var(--text-white);
         }
 
         .ticker-text span {
             color: var(--text-gold);
-            text-shadow: 0 0 8px var(--text-gold);
         }
 
         @keyframes ticker-drift {
@@ -368,13 +321,13 @@
         <div class="main-content-block">
             
             <div class="main-video-card">
-                <div style="width: 100%; height: 440px; border-bottom: 2px solid rgba(189, 0, 255, 0.4); position: relative; overflow: hidden; background: #000;">
+                <div class="video-holder-frame">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6aS6yFRxg1w?autoplay=1&mute=1&loop=1&playlist=6aS6yFRxg1w&controls=1&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="object-fit: cover;"></iframe>
                 </div>
                 <div class="video-description">
                     <span class="tag">OFFIZIELLER KANALTRAILER</span>
                     <h2>Willkommen bei DM Gaming News – Join the Crew! 🏎️💨</h2>
-                    <p>Das Imperium steht! Hier bist du mittendrin statt nur dabei. Zieh dir oben unseren brandneuen Trailer direkt auf dem Dashboard rein, nutze die Buttons darunter für den direkten Drift auf unsere Socials oder hol dir exklusive Angebote und Gratis-Wallpaper! Der Motor läuft – lass uns komplett abreißen!</p>
+                    <p>Das Imperium steht! Hier bist du mittendrin statt nur dabei. Zieh dir oben unseren brandneuen Trailer direkt auf dem Dashboard rein, nutze die Buttons darunter für den direkten Drift auf unsere Socials oder hol dir exklusive Angebote und Gratis-Wallpaper!</p>
                 </div>
             </div>
 
@@ -383,8 +336,8 @@
                 <a href="https://www.tiktok.com/@deadmasterpr?is_from_webapp=1&sender_device=pc" target="_blank" class="drift-button">📱 TikTok Drift-Feed</a>
                 <a href="https://www.instagram.com/dmgaming_news_drift_/" target="_blank" class="drift-button">📸 Instagram Reels</a>
                 <a href="https://www.instant-gaming.com/?igr=DMGamingDrift" target="_blank" class="drift-button">🛒 Günstige Games & Angebote (Instant Gaming)</a>
-                <a href="desktop-wallpaper.jpg.png" download="DM_Gaming_Drift_Desktop.png" class="drift-button">🖥️ Desktop Wallpaper (Free Download)</a>
-                <a href="handy-wallpaper.jpg.png" download="DM_Gaming_Drift_Handy.png" class="drift-button">📱 Smartphone Wallpaper (Free Download)</a>
+                <a href="desktop-wallpaper.jpg.png" download="DM_Gaming_Drift_Desktop.png" class="drift-button">🖥️ Desktop Wallpaper</a>
+                <a href="handy-wallpaper.jpg.png" download="DM_Gaming_Drift_Handy.png" class="drift-button">📱 Smartphone Wallpaper</a>
             </div>
 
         </div>
@@ -408,10 +361,21 @@
                 </div>
             </a>
 
+            <a href="https://youtube.com/shorts/ayTfsoYtpB0" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/ayTfsoYtpB0/hqdefault.jpg');"></div>
+                <div class="card-content">
+                    <span class="card-tag">Lego Batman Leak</span>
+                    <h3>Legacy of the Dark Knight! Erste Infos ab 48,99 EUR! 🦇💥</h3>
+                </div>
+            </a>
+
         </div>
+
+    </div>
+
     <div class="ticker-wrapper">
         <div class="ticker-text">
-            LIVE-NEWS: dreiste Händler-Tricks beim neuen Forza Horizon 6 in Japan! 🌊 +++ GTA 6 Review-Sperre! 🚨 Take-Two greift zu drastischen Maßnahmen für den Release im November! 📥 +++ <span>THE DEADMASTER DRIFT: JOIN THE 1K CREW!</span> +++ PS5-Konsole im Tiefpreis-Check! 🎮 +++ TOP Angebote +++ Lego Batman Legacy of the Dark Knight Ab 48,99 EUR +++ Subnautica 2 Ab 23,99 EUR +++
+            LIVE-NEWS: dreiste Händler-Tricks beim neuen Forza Horizon 6 in Japan! 🌊 +++ GTA 6 Review-Sperre! 🚨 Take-Two greift zu drastischen Maßnahmen für den Release im November! 📥 +++ <span>THE DEADMASTER DRIFT: JOIN THE 1K CREW!</span> +++ PS5-Konsole im Tiefpreis-Check! 🎮 +++ Lego Batman Legacy of the Dark Knight Ab 48,99 EUR +++ Subnautica 2 Ab 23,99 EUR +++
         </div>
     </div>
 
