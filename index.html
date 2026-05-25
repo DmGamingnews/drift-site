@@ -41,7 +41,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- NAVIGATION: EXTRA BREIT & SLIM (AUS DEM WIDESCREEN-DESIGN) --- */
+        /* --- OBERE NAVIGATIONSLEISTE (HEADER) --- */
         .main-header {
             width: 100%;
             position: fixed;
@@ -50,12 +50,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 30px; /* Schlanker und breiter */
+            padding: 15px 40px;
             background: rgba(10, 11, 14, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(189, 0, 255, 0.4);
+            border-bottom: 2px solid var(--neon-purple);
             z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .nav-logo {
@@ -65,46 +66,45 @@
         }
 
         .nav-logo img {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             object-fit: contain;
         }
 
         .nav-logo span {
             font-weight: 900;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: var(--text-white);
-            text-shadow: 0 0 8px var(--neon-purple);
-            font-size: 16px;
+            text-shadow: 0 0 10px var(--neon-purple);
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .nav-item {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-white);
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 13px;
             letter-spacing: 1px;
-            transition: all 0.2s ease;
-            padding: 5px 10px;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
             border-radius: 4px;
         }
 
         .nav-item:hover, .nav-item.active {
             color: var(--neon-cyan);
-            text-shadow: 0 0 8px var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
             background: rgba(0, 240, 255, 0.1);
         }
 
-        /* --- DASHBOARD: KOMPAKT UND ZENTRIERT (DEIN GELIEBTES LAYOUT) --- */
+        /* --- DASHBOARD LAYOUT BILDER-VERSION --- */
         .dashboard-container {
             max-width: 1450px;
-            margin: 110px auto 40px auto; /* Etwas tiefer, damit der Slim-Header passt */
+            margin: 110px auto 40px auto;
             padding: 0 25px;
             display: grid;
             grid-template-columns: 2.2fr 1.1fr;
@@ -117,7 +117,7 @@
             }
         }
 
-        /* --- LINKER BEREICH: HAUPTVIDEO-BLOCK & SOCIALS --- */
+        /* --- LINKER BEREICH: DEIN RECHTMÄSSIGER KANALTRAILER --- */
         .main-content-block {
             display: flex;
             flex-direction: column;
@@ -131,14 +131,51 @@
             overflow: hidden;
             box-shadow: 0 0 25px rgba(189, 0, 255, 0.25);
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .main-video-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
         }
 
         .video-thumbnail-container {
             width: 100%;
             height: 440px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            overflow: hidden;
-            background: #000;
+        }
+
+        .play-overlay {
+            width: 70px;
+            height: 70px;
+            background: rgba(189, 0, 255, 0.8);
+            border: 3px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            padding-left: 5px;
+            color: white;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transition: all 0.3s ease;
+        }
+
+        .main-video-card:hover .play-overlay {
+            background: rgba(0, 240, 255, 0.9);
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px var(--neon-cyan);
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -208,7 +245,7 @@
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        /* --- RECHTER BEREICH: NEWS SIDEBAR --- */
+        /* --- RECHTER BEREICH: NEWS SIDEBAR (NUR 2 KACHELN!) --- */
         .side-news-block {
             display: flex;
             flex-direction: column;
@@ -252,6 +289,11 @@
             background-size: cover;
             background-position: center;
             border-bottom: 2px solid rgba(189, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .grid-card:hover .card-thumbnail {
+            border-bottom-color: var(--neon-cyan);
         }
 
         .card-content {
@@ -336,24 +378,24 @@
         
         <div class="main-content-block">
             
-            <div class="main-video-card">
-                <div class="video-thumbnail-container">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6aS6yFRxg1w?autoplay=1&mute=1&loop=1&playlist=6aS6yFRxg1w&controls=1&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="object-fit: cover;"></iframe>
+            <a href="https://youtu.be/6aS6yFRxg1w" target="_blank" class="main-video-card">
+                <div class="video-thumbnail-container" style="background-image: url('https://img.youtube.com/vi/6aS6yFRxg1w/maxresdefault.jpg');">
+                    <div class="play-overlay">▶</div>
                 </div>
                 <div class="video-description">
                     <span class="tag">OFFIZIELLER KANALTRAILER</span>
                     <h2>Willkommen bei DM Gaming News – Join the Crew! 🏎️💨</h2>
                     <p>Das Imperium steht! Hier bist du mittendrin statt nur dabei. Zieh dir oben unseren brandneuen Trailer direkt auf dem Dashboard rein, nutze die Buttons darunter für den direkten Drift auf unsere Socials oder hol dir exklusive Angebote und Gratis-Wallpaper! Der Motor läuft – lass uns komplett abreißen!</p>
                 </div>
-            </div>
+            </a>
 
             <div class="links-wrapper">
                 <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="drift-button">🏁 YouTube Hauptkanal</a>
                 <a href="https://www.tiktok.com/@deadmasterpr?is_from_webapp=1&sender_device=pc" target="_blank" class="drift-button">📱 TikTok Drift-Feed</a>
                 <a href="https://www.instagram.com/dmgaming_news_drift_/" target="_blank" class="drift-button">📸 Instagram Reels</a>
                 <a href="https://www.instant-gaming.com/?igr=DMGamingDrift" target="_blank" class="drift-button">🛒 Günstige Games & Angebote (Instant Gaming)</a>
-                <a href="desktop-wallpaper.jpg.png" download="DM_Gaming_Drift_Desktop.png" class="drift-button">🖥️ Desktop Wallpaper</a>
-                <a href="handy-wallpaper.jpg.png" download="DM_Gaming_Drift_Handy.png" class="drift-button">📱 Smartphone Wallpaper</a>
+                <a href="desktop-wallpaper.jpg.png" download="DM_Gaming_Drift_Desktop.png" class="drift-button">🖥️ Desktop Wallpaper (Free Download)</a>
+                <a href="handy-wallpaper.jpg.png" download="DM_Gaming_Drift_Handy.png" class="drift-button">📱 Smartphone Wallpaper (Free Download)</a>
             </div>
 
         </div>
@@ -361,20 +403,12 @@
         <div class="side-news-block">
             <h2>Aktuelle Berichte</h2>
 
-            <div class="main-video-card">
-    <div class="video-thumbnail-container">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/a4sh881qHF8?autoplay=1&mute=1&loop=1&playlist=a4sh881qHF8&controls=1&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="object-fit: cover;"></iframe>
-    </div>
-    <a href="https://youtube.com/shorts/a4sh881qHF8" target="_blank" class="main-video-card">
-                <div class="video-thumbnail-container" style="background-image: url('https://img.youtube.com/vi/a4sh881qHF8/hqdefault.jpg');">
-                    <div class="play-overlay">▶</div>
+            <a href="https://youtube.com/shorts/a4sh881qHF8" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/a4sh881qHF8/hqdefault.jpg');"></div>
+                <div class="card-content">
+                    <span class="card-tag">GTA 6 Breaking</span>
+                    <h3>GTA 6 Review-Sperre! Take-Two greift brutal durch! 🚨</h3>
                 </div>
-                <div class="video-description">
-                    <span class="tag">TOP HIGHLIGHT</span>
-                    <h2>GTA 6 Review-Sperre! Take-Two greift brutal durch! 🚨</h2>
-                    <p>Die Tuning-Szene bebt! Welche drastischen Maßnahmen der Publisher Take-Two ergreift, um Leaks und verfrühte Testberichte kurz vor dem Release gnadenlos zu unterdrücken. Klicke jetzt einfach auf die Box, um das Video direkt auf YouTube abzufeuern!</p>
-                </div>
-</div>
             </a>
 
             <a href="https://youtube.com/shorts/ZpkSP8ijhVc" target="_blank" class="grid-card">
@@ -385,21 +419,13 @@
                 </div>
             </a>
 
-            <a href="https://youtube.com/shorts/ayTfsoYtpB0" target="_blank" class="grid-card">
-                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/ayTfsoYtpB0/hqdefault.jpg');"></div>
-                <div class="card-content">
-                    <span class="card-tag">GTA 6 Trailer 3 LEAK!?</span>
-                    <h3>Was ist dran? 🦇💥</h3>
-                </div>
-            </a>
-
         </div>
 
     </div>
 
     <div class="ticker-wrapper">
         <div class="ticker-text">
-            LIVE-NEWS: dreiste Händler-Tricks beim neuen Forza Horizon 6 in Japan! 🌊 +++ GTA 6 Review-Sperre! 🚨 Take-Two greift zu drastischen Maßnahmen für den Release im November! 📥 +++ <span>THE DEADMASTER DRIFT: JOIN THE 1K CREW!</span> +++ PS5-Konsole im Tiefpreis-Check! 🎮 +++ Lego Batman Legacy of the Dark Knight Ab 48,99 EUR +++ Subnautica 2 Ab 23,99 EUR +++
+            LIVE-NEWS: dreiste Händler-Tricks beim neuen Forza Horizon 6 in Japan! 🌊 +++ GTA 6 Review-Sperre! 🚨 Take-Two greift zu drastischen Maßnahmen für den Release im November! 📥 +++ <span>THE DEADMASTER DRIFT: JOIN THE 1K CREW!</span> +++ PS5-Konsole im Tiefpreis-Check! 🎮 +++ Subnautica 2 Ab 23,99 EUR +++
         </div>
     </div>
 
