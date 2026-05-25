@@ -11,7 +11,7 @@
             --neon-cyan: #00f0ff;
             --text-gold: #ffcc00;
             --text-white: #ffffff;
-            --dark-bg: #0b0c10;
+            --panel-bg: rgba(14, 10, 20, 0.85);
         }
 
         * {
@@ -32,7 +32,7 @@
             background-size: 400% 400%;
             animation: space-drift 15s ease infinite;
             overflow-x: hidden;
-            padding-bottom: 80px; /* Platz für den Ticker unten */
+            padding-bottom: 90px;
         }
 
         @keyframes space-drift {
@@ -51,11 +51,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
-            background: rgba(10, 11, 14, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(10, 11, 14, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 2px solid var(--neon-purple);
             z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .nav-logo {
@@ -71,7 +72,7 @@
         }
 
         .nav-logo span {
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 2px;
             color: var(--text-white);
             text-shadow: 0 0 10px var(--neon-purple);
@@ -85,12 +86,12 @@
         .nav-item {
             color: var(--text-white);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 4px;
         }
 
@@ -100,75 +101,88 @@
             background: rgba(0, 240, 255, 0.1);
         }
 
-        /* --- HAUPT-LAYOUT LAYOUT (DASHBOARD) --- */
+        /* --- PROFI DASHBOARD-GRID (1:1 WIE AUF DEM MONITOR) --- */
         .dashboard-container {
-            max-width: 1400px;
-            margin: 120px auto 40px auto;
-            padding: 0 20px;
+            max-width: 1450px;
+            margin: 110px auto 40px auto;
+            padding: 0 25px;
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Links groß, rechts schmaler */
+            grid-template-columns: 2.2fr 1.1fr; /* Hauptinhalt links breit, News rechts schmal */
             gap: 30px;
         }
 
-        @media (max-width: 968px) {
+        @media (max-width: 1024px) {
             .dashboard-container {
-                grid-template-columns: 1fr; /* Auf Handys untereinander */
+                grid-template-columns: 1fr; /* Schaltet auf Handys sauber untereinander */
             }
         }
 
-        /* --- LINKER BEREICH: HAUPT-VIDEO & SOCIAL BUTTONS --- */
+        /* --- LINKER BEREICH: HAUPTVIDEO-BLOCK & SOCIALS --- */
         .main-content-block {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 30px;
         }
 
+        /* Die große Haupt-Kachel */
         .main-video-card {
-            background: rgba(31, 0, 51, 0.6);
+            background: var(--panel-bg);
             border: 2px solid var(--neon-purple);
-            box-shadow: 0 0 20px rgba(189, 0, 255, 0.2);
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
+            box-shadow: 0 0 25px rgba(189, 0, 255, 0.25);
+            backdrop-filter: blur(10px);
         }
 
         .video-placeholder {
             width: 100%;
-            height: 400px;
-            background: #150022;
+            height: 440px;
+            background: linear-gradient(45deg, #150022, #290044);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 50px;
-            border-bottom: 2px solid rgba(189, 0, 255, 0.3);
+            font-size: 60px;
+            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
+            text-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        @media (max-width: 768px) {
+            .video-placeholder { height: 260px; }
         }
 
         .video-description {
-            padding: 25px;
+            padding: 30px;
         }
 
         .video-description .tag {
-            background: rgba(189, 0, 255, 0.2);
+            background: rgba(189, 0, 255, 0.25);
             color: #e066ff;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 4px;
+            border: 1px solid var(--neon-purple);
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
         .video-description h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
         }
 
         .video-description p {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.6;
+            font-size: 15px;
         }
 
-        /* Deine Social- & Download-Buttons */
+        /* Das perfekt eingepasste Button-Verzeichnis darunter */
         .links-wrapper {
             display: flex;
             flex-direction: column;
@@ -178,28 +192,29 @@
         .drift-button {
             display: block;
             width: 100%;
-            padding: 16px;
-            background: rgba(31, 0, 51, 0.7);
+            padding: 18px;
+            background: var(--panel-bg);
             border: 2px solid var(--neon-purple);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-white);
             text-decoration: none;
             font-weight: 700;
             text-align: center;
             font-size: 16px;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
         }
 
         .drift-button:hover {
             border-color: var(--neon-cyan);
             color: var(--neon-cyan);
-            transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        /* --- RECHTER BEREICH: NEWS KACHELN --- */
+        /* --- RECHTER BEREICH: DIE NEWS-SEITENBAR --- */
         .side-news-block {
             display: flex;
             flex-direction: column;
@@ -207,47 +222,58 @@
         }
 
         .side-news-block h2 {
-            font-size: 20px;
-            letter-spacing: 1px;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
             border-left: 4px solid var(--neon-cyan);
-            padding-left: 10px;
-            text-shadow: 0 0 10px var(--neon-cyan);
+            padding-left: 12px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            margin-bottom: 5px;
         }
 
         .grid-card {
-            background: rgba(11, 12, 16, 0.8);
+            background: var(--panel-bg);
             border: 2px solid rgba(189, 0, 255, 0.3);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
             text-decoration: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
         }
 
         .grid-card:hover {
             transform: translateY(-5px);
             border-color: var(--neon-cyan);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
         }
 
         .card-thumbnail {
             width: 100%;
-            height: 140px;
-            background: #1f0033;
+            height: 150px;
+            background: linear-gradient(135deg, #1c0a2a, #0b0c10);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 35px;
-            border-bottom: 1px solid rgba(189, 0, 255, 0.2);
+            font-size: 40px;
+            border-bottom: 2px solid rgba(189, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .grid-card:hover .card-thumbnail {
+            border-bottom-color: var(--neon-cyan);
+            background: linear-gradient(135deg, #121c24, #0b0c10);
         }
 
         .card-content {
-            padding: 15px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .card-tag {
@@ -257,15 +283,23 @@
             font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
-            padding: 3px 6px;
+            padding: 4px 8px;
             border-radius: 4px;
             border: 1px solid var(--neon-cyan);
+            letter-spacing: 0.5px;
         }
 
         .card-content h3 {
             color: var(--text-white);
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .card-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            line-height: 1.5;
         }
 
         /* --- LIVE NEWS TICKER UNTEN --- */
@@ -276,17 +310,17 @@
             width: 100%;
             background: #000000;
             border-top: 3px solid var(--neon-cyan);
-            padding: 12px 0;
-            z-index: 999;
+            padding: 14px 0;
+            z-index: 2000;
             overflow: hidden;
-            box-shadow: 0 -5px 20px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.3);
         }
 
         .ticker-text {
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: ticker 30s linear infinite;
+            animation: ticker-drift 35s linear infinite;
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 1px;
@@ -298,7 +332,7 @@
             text-shadow: 0 0 8px var(--text-gold);
         }
 
-        @keyframes ticker {
+        @keyframes ticker-drift {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-100%, 0, 0); }
         }
@@ -324,11 +358,11 @@
         <div class="main-content-block">
             
             <div class="main-video-card">
-                <div class="video-placeholder">🌌🎬</div>
+                <div class="video-placeholder">🌌🛡️</div>
                 <div class="video-description">
-                    <span class="tag">TOP HIGHLIGHT</span>
+                    <span class="tag">MAIN STREAM</span>
                     <h2>Deadmaster Gaming News - Gaming Button, Respection</h2>
-                    <p>Willkommen auf dem offiziellen Dashboard! Hier erfährst du alles über die neuesten Entwicklungen im PC-Gaming und Simulations-Bereich. Schau dir die aktuellen Videos an und lade dir exklusive Community-Wallpaper direkt herunter!</p>
+                    <p>Willkommen im Hauptquartier! Hier steuerst du direkt durch das gesamte Ökosystem von DM Gaming News. Streame die neuesten Gaming-Analysen, zieh dir die News-Feeds rein oder lade dir die brandneuen Community-Wallpaper direkt auf dein Setup! Der Drift beginnt jetzt.</p>
                 </div>
             </div>
 
@@ -344,21 +378,23 @@
         </div>
 
         <div class="side-news-block">
-            <h2>WEITERE NEWS & VIDEOS</h2>
+            <h2>Aktuelle Berichte</h2>
 
             <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="grid-card">
                 <div class="card-thumbnail">🏎️</div>
                 <div class="card-content">
-                    <span class="card-tag">Forza 6</span>
-                    <h3>Dreiste Händler-Tricks in Japan!</h3>
+                    <span class="card-tag">Forza Horizon 6</span>
+                    <h3>Dreiste Händler-Tricks aufgedeckt!</h3>
+                    <p>Die Tuning-Szene in Japan kocht! Was die Händler heimlich abziehen...</p>
                 </div>
             </a>
 
             <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="grid-card">
                 <div class="card-thumbnail">🚨</div>
                 <div class="card-content">
-                    <span class="card-tag">GTA 6</span>
-                    <h3>Review-Sperre von Take-Two!</h3>
+                    <span class="card-tag">GTA 6 Update</span>
+                    <h3>Drastische Review-Sperre geplant?</h3>
+                    <p>Take-Two greift vor dem Release im November knallhart durch.</p>
                 </div>
             </a>
 
@@ -366,7 +402,8 @@
                 <div class="card-thumbnail">🌊</div>
                 <div class="card-content">
                     <span class="card-tag">Subnautica 2</span>
-                    <h3>Die Tiefsee ruft im Koop!</h3>
+                    <h3>Koop-Modus und Rohstoff-Leaks</h3>
+                    <p>Die neuesten Geheimnisse aus den unendlichen Tiefen des Meeres.</p>
                 </div>
             </a>
 
