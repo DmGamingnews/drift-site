@@ -101,19 +101,19 @@
             background: rgba(0, 240, 255, 0.1);
         }
 
-        /* --- PROFI DASHBOARD-GRID (1:1 WIE AUF DEM MONITOR) --- */
+        /* --- PROFI DASHBOARD-GRID --- */
         .dashboard-container {
             max-width: 1450px;
             margin: 110px auto 40px auto;
             padding: 0 25px;
             display: grid;
-            grid-template-columns: 2.2fr 1.1fr; /* Hauptinhalt links breit, News rechts schmal */
+            grid-template-columns: 2.2fr 1.1fr;
             gap: 30px;
         }
 
         @media (max-width: 1024px) {
             .dashboard-container {
-                grid-template-columns: 1fr; /* Schaltet auf Handys sauber untereinander */
+                grid-template-columns: 1fr;
             }
         }
 
@@ -124,7 +124,6 @@
             gap: 30px;
         }
 
-        /* Die große Haupt-Kachel */
         .main-video-card {
             background: var(--panel-bg);
             border: 2px solid var(--neon-purple);
@@ -134,20 +133,42 @@
             backdrop-filter: blur(10px);
         }
 
-        .video-placeholder {
+        .video-thumbnail-container {
             width: 100%;
             height: 440px;
-            background: linear-gradient(45deg, #150022, #290044);
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
-            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
-            text-shadow: 0 0 20px var(--neon-purple);
+            position: relative;
+        }
+
+        .play-overlay {
+            width: 70px;
+            height: 70px;
+            background: rgba(189, 0, 255, 0.8);
+            border: 3px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            padding-left: 5px;
+            box-shadow: 0 0 20px var(--neon-purple);
+            transition: all 0.3s ease;
+        }
+
+        .main-video-card:hover .play-overlay {
+            background: rgba(0, 240, 255, 0.9);
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 25px var(--neon-cyan);
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
-            .video-placeholder { height: 260px; }
+            .video-thumbnail-container { height: 260px; }
         }
 
         .video-description {
@@ -182,7 +203,6 @@
             font-size: 15px;
         }
 
-        /* Das perfekt eingepasste Button-Verzeichnis darunter */
         .links-wrapper {
             display: flex;
             flex-direction: column;
@@ -214,7 +234,7 @@
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        /* --- RECHTER BEREICH: DIE NEWS-SEITENBAR --- */
+        /* --- RECHTER BEREICH: NEWS SIDEBAR --- */
         .side-news-block {
             display: flex;
             flex-direction: column;
@@ -254,19 +274,15 @@
 
         .card-thumbnail {
             width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #1c0a2a, #0b0c10);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
             border-bottom: 2px solid rgba(189, 0, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .grid-card:hover .card-thumbnail {
             border-bottom-color: var(--neon-cyan);
-            background: linear-gradient(135deg, #121c24, #0b0c10);
         }
 
         .card-content {
@@ -291,15 +307,9 @@
 
         .card-content h3 {
             color: var(--text-white);
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             line-height: 1.4;
-        }
-
-        .card-content p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 13px;
-            line-height: 1.5;
         }
 
         /* --- LIVE NEWS TICKER UNTEN --- */
@@ -320,7 +330,7 @@
             display: inline-block;
             white-space: nowrap;
             padding-left: 100%;
-            animation: ticker-drift 35s linear infinite;
+            animation: ticker-drift 30s linear infinite;
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 1px;
@@ -357,14 +367,16 @@
         
         <div class="main-content-block">
             
-            <div class="main-video-card">
-                <div class="video-placeholder">🌌🛡️</div>
-                <div class="video-description">
-                    <span class="tag">MAIN STREAM</span>
-                    <h2>Deadmaster Gaming News - Gaming Button, Respection</h2>
-                    <p>Willkommen im Hauptquartier! Hier steuerst du direkt durch das gesamte Ökosystem von DM Gaming News. Streame die neuesten Gaming-Analysen, zieh dir die News-Feeds rein oder lade dir die brandneuen Community-Wallpaper direkt auf dein Setup! Der Drift beginnt jetzt.</p>
+            <a href="https://youtube.com/shorts/GLaUGix3tSw" target="_blank" class="main-video-card" style="text-decoration: none; color: inherit;">
+                <div class="video-thumbnail-container" style="background-image: url('https://img.youtube.com/vi/GLaUGix3tSw/maxresdefault.jpg');">
+                    <div class="play-overlay">▶</div>
                 </div>
-            </div>
+                <div class="video-description">
+                    <span class="tag">TOP HIGHLIGHT</span>
+                    <h2>Vorbesteller-Tricks bei Forza Horizon 6! 💥</h2>
+                    <p>Die Tuning-Szene bebt! Welche geheimen Deals und fiesen Kniffe du jetzt vor dem Release kennen musst, um dir die exklusiven Karren rechtmäßig in die Garage zu holen. Klicke jetzt auf die Box, um das Video direkt abzufeuern!</p>
+                </div>
+            </a>
 
             <div class="links-wrapper">
                 <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="drift-button">🏁 YouTube Hauptkanal</a>
@@ -380,30 +392,19 @@
         <div class="side-news-block">
             <h2>Aktuelle Berichte</h2>
 
-            <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="grid-card">
-                <div class="card-thumbnail">🏎️</div>
+            <a href="https://youtube.com/shorts/a4sh881qHF83" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/a4sh881qHF83/hqdefault.jpg');"></div>
                 <div class="card-content">
-                    <span class="card-tag">Forza Horizon 6</span>
-                    <h3>Dreiste Händler-Tricks aufgedeckt!</h3>
-                    <p>Die Tuning-Szene in Japan kocht! Was die Händler heimlich abziehen...</p>
+                    <span class="card-tag">GTA 6 Breaking</span>
+                    <h3>GTA 6 Review-Sperre! Take-Two greift brutal durch! 🚨</h3>
                 </div>
             </a>
 
-            <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="grid-card">
-                <div class="card-thumbnail">🚨</div>
+            <a href="https://youtube.com/shorts/ZpkSP8ijhVc" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/ZpkSP8ijhVc/hqdefault.jpg');"></div>
                 <div class="card-content">
-                    <span class="card-tag">GTA 6 Update</span>
-                    <h3>Drastische Review-Sperre geplant?</h3>
-                    <p>Take-Two greift vor dem Release im November knallhart durch.</p>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="grid-card">
-                <div class="card-thumbnail">🌊</div>
-                <div class="card-content">
-                    <span class="card-tag">Subnautica 2</span>
-                    <h3>Koop-Modus und Rohstoff-Leaks</h3>
-                    <p>Die neuesten Geheimnisse aus den unendlichen Tiefen des Meeres.</p>
+                    <span class="card-tag">Subnautica 2 Leaks</span>
+                    <h3>JEDER LEVIATHAN GEFUNDEN! Tu das NICHT im Koop! 🌊</h3>
                 </div>
             </a>
 
