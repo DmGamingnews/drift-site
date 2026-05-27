@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DM Gaming News - Der maximale Drift!</title>
-    <link type="image/png" href="favicon.png.png" rel="icon">
+    <link type="image/png" href="favicon.png" rel="icon">
     <style>
         :root {
             --neon-purple: #bd00ff;
@@ -37,7 +37,7 @@
             background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
             animation: grid-drift 20s linear infinite;
             overflow-x: hidden;
-            padding-bottom: 90px;
+            padding-bottom: 120px; /* Erhöht für freien Abstand zum Ticker */
         }
 
         @keyframes grid-drift {
@@ -103,10 +103,12 @@
         .nav-item { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; transition: all 0.2s ease; padding: 5px 10px; border-radius: 4px; }
         .nav-item:hover, .nav-item.active { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); background: rgba(0, 240, 255, 0.1); }
 
+        /* OPTIMIERUNG: Scroll-Margin verhindert abgeschnittene Überschriften beim Navigieren */
         .section-title {
             font-size: 26px; font-weight: 800; letter-spacing: 1.5px; border-left: 5px solid var(--neon-cyan);
             padding-left: 15px; text-transform: uppercase; text-shadow: 0 0 15px var(--neon-cyan);
             margin: 60px auto 20px auto; max-width: 1400px;
+            scroll-margin-top: 90px;
         }
 
         .content-block-wide {
@@ -131,7 +133,11 @@
 
         .main-content-block { display: flex; flex-direction: column; gap: 30px; }
         .main-video-card { background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 14px; overflow: hidden; box-shadow: 0 0 30px rgba(189, 0, 255, 0.3); }
+        
+        /* Sauberes Embedding ohne Player-Verzerrungen */
         .video-thumbnail-container { width: 100%; height: 440px; position: relative; overflow: hidden; background: #000; border-bottom: 2px solid rgba(189, 0, 255, 0.4); }
+        .video-thumbnail-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
         .video-description { padding: 30px; position: relative; }
 
         .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
@@ -143,14 +149,19 @@
 
         .grid-card { background: var(--panel-bg); border: 2px solid rgba(189, 0, 255, 0.3); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; text-decoration: none; }
         .grid-card:hover { transform: translateY(-5px); border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.35); }
-        .card-thumbnail { width: 100%; height: 160px; background-size: cover; background-position: center; border-bottom: 2px solid rgba(189, 0, 255, 0.2); }
+        
+        /* OPTIMIERUNG: background-size cover zentriert Hochformat-Bilder in Shorts-Kacheln perfekt */
+        .card-thumbnail { width: 100%; height: 160px; background-size: cover; background-position: center 30%; border-bottom: 2px solid rgba(189, 0, 255, 0.2); }
         .card-content { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
         .card-tag { align-self: flex-start; background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--neon-cyan); }
         .card-content h3 { color: var(--text-white); font-size: 15px; font-weight: 700; line-height: 1.4; }
 
-        .merch-card { background: rgba(20, 15, 30, 0.7); border: 1px solid rgba(189, 0, 255, 0.4); border-radius: 10px; padding: 20px; text-align: center; transition: all 0.3s ease; }
+        /* NEUE OPTIMIERUNG: Einzelbild-Container für den Merch-Bereich */
+        .merch-card { background: rgba(20, 15, 30, 0.7); border: 1px solid rgba(189, 0, 255, 0.4); border-radius: 10px; padding: 20px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; }
         .merch-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.3); transform: translateY(-3px); }
-        .merch-icon { font-size: 50px; margin-bottom: 15px; display: block; }
+        .merch-img-container { width: 100%; height: 200px; background: rgba(5, 2, 10, 0.6); border-radius: 8px; margin-bottom: 15px; overflow: hidden; border: 1px solid rgba(189, 0, 255, 0.2); display: flex; align-items: center; justify-content: center; }
+        .merch-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .merch-card:hover .merch-img { transform: scale(1.05); }
         .merch-price { color: var(--text-gold); font-weight: 800; font-size: 18px; margin: 10px 0; }
 
         .ticker-wrapper { position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; border-top: 3px solid var(--neon-cyan); padding: 14px 0; z-index: 2000; overflow: hidden; box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.4); }
@@ -163,7 +174,7 @@
 
     <header class="main-header">
         <div class="nav-logo">
-            <img src="favicon.png.png.png" alt="DG Logo">
+            <img src="favicon.png" alt="DG Logo">
             <span>DM GAMING NEWS</span>
             <div class="live-indicator-badge">
                 <div class="pulse-dot"></div>
@@ -178,14 +189,12 @@
         </nav>
     </header>
 
-    <div id="home"></div>
-
-    <div class="dashboard-container">
+    <div class="dashboard-container" id="home">
         
         <div class="main-content-block">
             <div class="main-video-card">
                 <div class="video-thumbnail-container">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6aS6yFRxg1w?autoplay=1&mute=1&loop=1&playlist=6aS6yFRxg1w&controls=1&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="object-fit: cover;"></iframe>
+                    <iframe src="https://www.youtube.com/embed/6aS6yFRxg1w?autoplay=1&mute=1&loop=1&playlist=6aS6yFRxg1w&controls=1&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-description">
                     <h2>Willkommen bei DM Gaming News – Join the Crew! 🏎️💨</h2>
@@ -201,24 +210,24 @@
         </div>
 
         <div class="side-news-block">
-    <h2>Aktuelle Berichte</h2>
-    
-    <a href="https://youtube.com/shorts/a4sh881qHF8" target="_blank" class="grid-card">
-        <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/CtbPm_Dvk2I/mqdefault.jpg');"></div>
-        <div class="card-content">
-            <span class="card-tag">GTA 6 News</span>
-            <h3>VORSICHT VOR GTA 6 SCAMS! 💥 Dreiste Vorbesteller-Abzocke geleakt! 😱</h3>
+            <h2>Aktuelle Berichte</h2>
+            
+            <a href="https://youtube.com/shorts/a4sh881qHF8" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/a4sh881qHF8/mqdefault.jpg');"></div>
+                <div class="card-content">
+                    <span class="card-tag">GTA 6 News</span>
+                    <h3>VORSICHT VOR GTA 6 SCAMS! 💥 Dreiste Vorbesteller-Abzocke geleakt! 😱</h3>
+                </div>
+            </a>
+            
+            <a href="https://youtube.com/shorts/wjyaX-3kFrM" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/wjyaX-3kFrM/mqdefault.jpg');"></div>
+                <div class="card-content">
+                    <span class="card-tag">GTA 6 Breaking</span>
+                    <h3>GTA 6 Review-Sperre! Take-Two greift brutal durch! 🚨</h3>
+                </div>
+            </a>
         </div>
-    </a>
-    
-    <a href="https://youtube.com/shorts/wjyaX-3kFrM" target="_blank" class="grid-card">
-        <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/a4sh881qHF8/mqdefault.jpg');"></div>
-        <div class="card-content">
-            <span class="card-tag">GTA 6 Breaking</span>
-            <h3>GTA 6 Review-Sperre! Take-Two greift brutal durch! 🚨</h3>
-        </div>
-    </a>
-</div>
 
     </div>
 
@@ -250,71 +259,86 @@
     </div>
 
     <h2 id="videos" class="section-title">Video Center</h2>
-<div class="content-block-wide">
-    <h3>Das offizielle Content-Archiv – Zieh dir jeden Drift rein!</h3>
-    <div class="profi-grid">
-        
-        <a href="https://youtu.be/T9kHZnOF8Ws" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/p0sQLdHY1-M/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>NVIDIA verbannt uns Gamer! 🛑 „Days of Play 2026“</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/wjyaX-3kFrM" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/FCVPblKKQQc/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>GTA 6 VORBESTELLUNG LIVE?! 🚨 Geheimer Händler-Leak!</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/SH5JX-pm1Iw" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/SH5JX-pm1Iw/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>Days of Play 2026 Mega-Check! 🎮 Exklusive Highlights!</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/FwqU4NdMH94" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/sbVGXsNRkTQ/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>SUBNAUTICA 2: 2 MIO. SALES IN 24H! 🌊 Trailer 3 am Montag?</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/bKl_B5osO-Q" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/tka-Vw7XE_s/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>DM GAMING DRIFT | WINDROSE CONSOLE CHECK ⚓</h3></div>
-        </a>
-
-        <a href="https://youtu.be/tka-Vw7XE_s" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/D5DgpDp25M4/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>Das Ende von Intel Arc? 🛑 Diablo 4 Lord of Hatred ist DA!</h3></div>
-        </a>
-
-    </div>
-</div>
-
-    <h2 id="merch" class="section-title">DM Crew Fan-Shop</h2>
     <div class="content-block-wide">
-        <h3>Hol dir das offizielle DM Gaming Gear!</h3>
+        <h3>Das offizielle Content-Archiv – Zieh dir jeden Drift rein!</h3>
         <div class="profi-grid">
+            
+            <a href="https://youtu.be/T9kHZnOF8Ws" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/T9kHZnOF8Ws/mqdefault.jpg');"></div>
+                <div class="card-content"><h3>NVIDIA verbannt uns Gamer! 🛑 „Days of Play 2026“</h3></div>
+            </a>
+
+            <a href="https://youtube.com/shorts/wjyaX-3kFrM" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/wjyaX-3kFrM/mqdefault.jpg');"></div>
+                <div class="card-content"><h3>GTA 6 VORBESTELLUNG LIVE?! 🚨 Geheimer Händler-Leak!</h3></div>
+            </a>
+
+            <a href="https://youtube.com/shorts/SH5JX-pm1Iw" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/SH5JX-pm1Iw/mqdefault.jpg');"></div>
+                <div class="card-content"><h3>Days of Play 2026 Mega-Check! 🎮 Exklusive Highlights!</h3></div>
+            </a>
+
+            <a href="https://youtube.com/shorts/FwqU4NdMH94" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/FwqU4NdMH94/mqdefault.jpg');"></div>
+                <div class="card-content"><h3>SUBNAUTICA 2: 2 MIO. SALES IN 24H! 🌊 Trailer 3 am Montag?</h3></div>
+            </a>
+
+            <a href="https://youtube.com/shorts/bKl_B5osO-Q" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/bKl_B5osO-Q/mqdefault.jpg');"></div>
+                <div class="card-content"><h3>DM GAMING DRIFT | WINDROSE CONSOLE CHECK ⚓</h3></div>
+            </a>
+
+            <a href="https://youtu.be/tka-Vw7XE_s" target="_blank" class="grid-card">
+                <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/tka-Vw7XE_s/mqdefault.jpg');"></div>
+                <div class="card-content"><h3>Das Ende von Intel Arc? 🛑 Diablo 4 Lord of Hatred ist DA!</h3></div>
+            </a>
+
+        </div>
+    </div>
+
+    <h2 id="merch" class="section-title">DM Crew Fan-Shop – Merch Voting</h2>
+    <div class="content-block-wide">
+        <h3 style="margin-bottom: 10px; color: var(--text-gold);">🔥 BESTIMME DEN ERSTEN CREW-DROP! 🔥</h3>
+        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 30px; line-height: 1.6;">
+            Das Konzept für das offizielle Lineup steht! Clean, schlicht und mit exklusivem Cosmic-Glow-Lining. 
+            Welches Teil muss zuerst in die Produktion? Stimme ab und sichere dir die Chance auf einen der ersten Prototypen!
+        </p>
+
+        <div class="profi-grid">
+            
             <div class="merch-card">
-                <span class="merch-icon">🧥</span>
+                <div class="merch-img-container">
+                    <img src="hoodie.png" alt="DM Gaming Crew Hoodie" class="merch-img">
+                </div>
                 <h4>DM Gaming Crew Hoodie</h4>
-                <p class="merch-price">49,99 €</p>
-                <a href="mailto:deine-mail@domain.com?subject=Merch-Anfrage: Hoodie" class="drift-button" style="padding: 10px;">Jetzt sichern!</a>
+                <p class="merch-price" style="color: var(--neon-cyan); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Status: Approved</p>
+                <a href="mailto:info@drift-gaming.com?subject=VOTE: Ich will den Clean Crew Hoodie!" class="drift-button" style="padding: 10px; background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan);">👍 Für Hoodie voten</a>
             </div>
+
             <div class="merch-card">
-                <span class="merch-icon">🧢</span>
+                <div class="merch-img-container">
+                    <img src="cap.png" alt="Drift Master Cap" class="merch-img">
+                </div>
                 <h4>Drift Master Cap</h4>
-                <p class="merch-price">24,99 €</p>
-                <a href="mailto:deine-mail@domain.com?subject=Merch-Anfrage: Cap" class="drift-button" style="padding: 10px;">Jetzt sichern!</a>
+                <p class="merch-price" style="color: var(--neon-cyan); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Status: Approved</p>
+                <a href="mailto:info@drift-gaming.com?subject=VOTE: Ich will die Drift Master Cap!" class="drift-button" style="padding: 10px; background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan);">👍 Für Cap voten</a>
             </div>
+
             <div class="merch-card">
-                <span class="merch-icon">☕</span>
+                <div class="merch-img-container">
+                    <img src="tasse.png" alt="DM Premium Tasse" class="merch-img">
+                </div>
                 <h4>DM Premium Tasse</h4>
-                <p class="merch-price">14,99 €</p>
-                <a href="mailto:deine-mail@domain.com?subject=Merch-Anfrage: Tasse" class="drift-button" style="padding: 10px;">Jetzt sichern!</a>
+                <p class="merch-price" style="color: var(--neon-cyan); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Status: Approved</p>
+                <a href="mailto:info@drift-gaming.com?subject=VOTE: Ich will die Premium Tasse!" class="drift-button" style="padding: 10px; background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan);">👍 Für Tasse voten</a>
             </div>
+
         </div>
     </div>
 
     <div class="ticker-wrapper">
         <div class="ticker-text">
-            LIVE-NEWS:+++ GTA 6 Release am 19. November 2026 offiziell bestätigt! Vorbestellungen starten Ende Juni! PC-Version erst deutlich später! 🚨 +++ LEAK: Komplette originale Halo-Trilogie (Teil 1-3) als Remake in Arbeit! 😱 +++ Brutale Warnung vor GTA 6 Vorbesteller-Scams!🎮 +++ PATH OF EXILE 2: Neues Riesen-Update bricht mit Endlos-Grind und bringt echtes Story-Ende! 🌊 +++ JOIN THE CREW! +++
+            LIVE-NEWS: +++ GTA 6 Release am 19. November 2026 offiziell bestätigt! Vorbestellungen starten Ende Juni! PC-Version erst deutlich später! 🚨 +++ LEAK: Komplette originale Halo-Trilogie (Teil 1-3) als Remake in Arbeit! 😱 +++ Brutale Warnung vor GTA 6 Vorbesteller-Scams! 🎮 +++ PATH OF EXILE 2: Neues Riesen-Update bricht mit Endlos-Grind und bringt echtes Story-Ende! 🌊 +++ JOIN THE CREW! +++
         </div>
     </div>
 
