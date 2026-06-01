@@ -150,7 +150,13 @@
 
         .merch-card { background: rgba(20, 15, 30, 0.7); border: 1px solid rgba(189, 0, 255, 0.4); border-radius: 10px; padding: 20px; text-align: center; transition: all 0.3s ease; }
         .merch-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.3); transform: translateY(-3px); }
-        .merch-icon { font-size: 50px; margin-bottom: 15px; display: block; }
+        .merch-icon .merch-icon {
+    width: 100%;          /* Nutzt die Breite der Karte */
+    max-width: 180px;     /* Begrenzt die Bildgröße auf 180px */
+    height: auto;         /* Hält das Bildverhältnis korrekt */
+    display: block;       /* Sorgt für sauberes Layout */
+    margin: 0 auto 15px auto; /* Zentriert das Bild horizontal */
+}
         .merch-price { color: var(--text-gold); font-weight: 800; font-size: 18px; margin: 10px 0; }
 
         .ticker-wrapper { position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; border-top: 3px solid var(--neon-cyan); padding: 14px 0; z-index: 2000; overflow: hidden; box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.4); }
