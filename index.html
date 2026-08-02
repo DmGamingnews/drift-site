@@ -1,334 +1,111 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DM Gaming News - Der maximale Drift!</title>
-    <link type="image/png" href="favicon.png.png.png" rel="icon">
-    <style>
-        :root {
-            --neon-purple: #bd00ff;
-            --neon-cyan: #00f0ff;
-            --neon-red: #ff0055;
-            --text-gold: #ffcc00;
-            --text-white: #ffffff;
-            --panel-bg: rgba(10, 5, 18, 0.9);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            width: 100vw;
-            min-height: 100vh;
-            color: var(--text-white);
-            background-color: #05020a;
-            background-image: 
-                radial-gradient(circle at 20% 35%, rgba(189, 0, 255, 0.2), transparent 45%),
-                radial-gradient(circle at 80% 70%, rgba(0, 240, 255, 0.15), transparent 45%),
-                linear-gradient(rgba(189, 0, 255, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(189, 0, 255, 0.08) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
-            animation: grid-drift 20s linear infinite;
-            overflow-x: hidden;
-            padding-bottom: 90px;
-        }
-
-        @keyframes grid-drift {
-            0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
-            100% { background-position: 0% 0%, 0% 0%, 0% 1000px, 0% 0%; }
-        }
-
-        .main-header {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 30px;
-            background: rgba(5, 2, 10, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--neon-purple);
-            z-index: 1000;
-            box-shadow: 0 5px 25px rgba(189, 0, 255, 0.3);
-        }
-
-        .nav-logo { display: flex; align-items: center; gap: 12px; }
-        .nav-logo img { width: 28px; height: 28px; object-fit: contain; }
-        .nav-logo span { font-weight: 900; letter-spacing: 1.5px; color: var(--text-white); text-shadow: 0 0 10px var(--neon-purple); font-size: 16px; }
-        
-        /* --- PULSIERENDER LIVE INDIKATOR --- */
-        .live-indicator-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 0, 85, 0.1);
-            border: 1px solid var(--neon-red);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--neon-red);
-            text-shadow: 0 0 5px var(--neon-red);
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.2);
-            margin-left: 10px;
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--neon-red);
-            border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7);
-            animation: pulse-animation 1.6s infinite cubic-bezier(0.66, 0, 0, 1);
-        }
-
-        @keyframes pulse-animation {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 0, 85, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
-        }
-
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-item { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; transition: all 0.2s ease; padding: 5px 10px; border-radius: 4px; }
-        .nav-item:hover, .nav-item.active { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); background: rgba(0, 240, 255, 0.1); }
-
-        .section-title {
-            font-size: 26px; font-weight: 800; letter-spacing: 1.5px; border-left: 5px solid var(--neon-cyan);
-            padding-left: 15px; text-transform: uppercase; text-shadow: 0 0 15px var(--neon-cyan);
-            margin: 60px auto 20px auto; max-width: 1400px;
-        }
-
-        .content-block-wide {
-            max-width: 1400px; margin: 0 auto 40px auto; padding: 35px;
-            background: var(--panel-bg); border: 2px solid var(--neon-purple);
-            border-radius: 14px; box-shadow: 0 0 30px rgba(189, 0, 255, 0.2); backdrop-filter: blur(15px);
-        }
-
-        .redaktion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
-        @media (max-width: 900px) { .redaktion-grid { grid-template-columns: 1fr; } }
-
-        .article-box { background: rgba(5, 2, 10, 0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(189, 0, 255, 0.2); }
-        .article-meta { color: var(--neon-cyan); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        .article-lead { font-size: 16px; font-weight: 700; color: var(--text-gold); line-height: 1.5; margin-bottom: 20px; }
-        .article-text p { color: rgba(255, 255, 255, 0.85); line-height: 1.7; font-size: 15px; margin-bottom: 15px; }
-        .article-text h4 { color: var(--text-white); font-size: 17px; font-weight: 800; margin: 25px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid rgba(189, 0, 255, 0.3); padding-bottom: 5px; }
-
-        .profi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 20px; }
-
-        .dashboard-container { max-width: 1450px; margin: 110px auto 10px auto; padding: 0 25px; display: grid; grid-template-columns: 2.2fr 1.1fr; gap: 30px; }
-        @media (max-width: 1024px) { .dashboard-container { grid-template-columns: 1fr; } }
-
-        .main-content-block { display: flex; flex-direction: column; gap: 30px; }
-        .main-video-card { background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 14px; overflow: hidden; box-shadow: 0 0 30px rgba(189, 0, 255, 0.3); }
-        .video-thumbnail-container { width: 100%; height: 440px; position: relative; overflow: hidden; background: #000; border-bottom: 2px solid rgba(189, 0, 255, 0.4); }
-        .video-description { padding: 30px; position: relative; }
-
-        .links-wrapper { display: flex; flex-direction: column; gap: 15px; }
-        .drift-button { display: block; width: 100%; padding: 18px; background: var(--panel-bg); border: 2px solid var(--neon-purple); border-radius: 10px; color: var(--text-white); text-decoration: none; font-weight: 700; text-align: center; font-size: 16px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
-        .drift-button:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-3px) scale(1.01); box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); }
-
-        .side-news-block { display: flex; flex-direction: column; gap: 20px; }
-        .side-news-block h2 { font-size: 18px; font-weight: 800; border-left: 4px solid var(--neon-cyan); padding-left: 12px; text-transform: uppercase; margin-bottom: 5px; text-shadow: 0 0 10px var(--neon-cyan); }
-
-        .grid-card { background: var(--panel-bg); border: 2px solid rgba(189, 0, 255, 0.3); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; text-decoration: none; }
-        .grid-card:hover { transform: translateY(-5px); border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.35); }
-        .card-thumbnail { width: 100%; height: 160px; background-size: cover; background-position: center; border-bottom: 2px solid rgba(189, 0, 255, 0.2); }
-        .card-content { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-        .card-tag { align-self: flex-start; background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--neon-cyan); }
-        .card-content h3 { color: var(--text-white); font-size: 15px; font-weight: 700; line-height: 1.4; }
-
-        .merch-card { background: rgba(20, 15, 30, 0.7); border: 1px solid rgba(189, 0, 255, 0.4); border-radius: 10px; padding: 20px; text-align: center; transition: all 0.3s ease; }
-        .merch-card:hover { border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.3); transform: translateY(-3px); }
-        .merch-icon {
-    width: 100%;          /* Nutzt die Breite der Karte */
-    max-width: 180px;     /* Begrenzt die Bildgröße auf 180px */
-    height: auto;         /* Hält das Bildverhältnis korrekt */
-    display: block;       /* Sorgt für sauberes Layout */
-    margin: 0 auto 15px auto; /* Zentriert das Bild horizontal */
-}
-        .merch-price { color: var(--text-gold); font-weight: 800; font-size: 18px; margin: 10px 0; }
-
-        .ticker-wrapper { position: fixed; bottom: 0; left: 0; width: 100%; background: #000000; border-top: 3px solid var(--neon-cyan); padding: 14px 0; z-index: 2000; overflow: hidden; box-shadow: 0 -5px 25px rgba(0, 240, 255, 0.4); }
-        .ticker-text { display: inline-block; white-space: nowrap; padding-left: 100%; animation: ticker-drift 30s linear infinite; font-weight: 700; font-size: 14px; color: var(--text-white); }
-        .ticker-text span { color: var(--text-gold); }
-        @keyframes ticker-drift { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gaming News, Livestreams, Variety Gaming und Community – willkommen bei DMDriftGaming.">
+  <meta property="og:title" content="DMDriftGaming | Play. Drift. Live.">
+  <meta property="og:description" content="Gaming News, Livestreams, Variety Gaming und Community.">
+  <meta property="og:image" content="dmdriftgaming-hero.png">
+  <title>DMDriftGaming | Play. Drift. Live.</title>
+  <link rel="icon" href="dmdriftgaming-logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header class="main-header">
-        <div class="nav-logo">
-            <img src="favicon.png.png.png" alt="DG Logo">
-            <span>DM GAMING NEWS</span>
-            <div class="live-indicator-badge">
-                <div class="pulse-dot"></div>
-                <span>LIVE ON AIR</span>
-            </div>
-        </div>
-        <nav class="nav-links">
-            <a href="#home" class="nav-item">Home</a>
-            <a href="#news" class="nav-item">News</a>
-            <a href="#videos" class="nav-item">Videos</a>
-            <a href="#merch" class="nav-item">Merch</a>
-
-            <a href="https://twitch.tv/DMDRIFTGAMING" target="_blank" class="nav-item">Twitch</a>
-        </nav>
-    </header>
-
-    <div id="home"></div>
-
-    <div class="dashboard-container">
-        
-        <div class="main-content-block">
-            <div class="main-video-card">
-                <div class="video-thumbnail-container">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/6aS6yFRxg1w?autoplay=1&mute=1&loop=1&playlist=6aS6yFRxg1w&controls=1&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="object-fit: cover;"></iframe>
-                </div>
-                <div class="video-description">
-                    <h2>Willkommen bei DM Gaming News – Join the Crew! 🏎️💨</h2>
-                </div>
-            </div>
-
-            <div class="links-wrapper">
-                <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" class="drift-button">🏁 YouTube Hauptkanal</a>
-                <a href="https://www.tiktok.com/@deadmasterpr?is_from_webapp=1&sender_device=pc" target="_blank" class="drift-button">📱 TikTok Drift-Feed</a>
-                <a href="https://www.instagram.com/dmgaming_news_drift_/" target="_blank" class="drift-button">📸 Instagram Reels</a>
-                <a href="https://shop.drift-gaming.com/" target="_blank" class="drift-button">🛒 E-Books & Hilfe (Shop.Drift_Gaming)</a>
-            </div>
-        </div>
-
-        <div class="side-news-block">
-    <h2>Aktuelle Berichte</h2>
-    
-    <a href="https://youtube.com/shorts/a4sh881qHF8" target="_blank" class="grid-card">
-        <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/CtbPm_Dvk2I/mqdefault.jpg');"></div>
-        <div class="card-content">
-            <span class="card-tag">GTA 6 News</span>
-            <h3>VORSICHT VOR GTA 6 SCAMS! 💥 Dreiste Vorbesteller-Abzocke geleakt! 😱</h3>
-        </div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="DMDriftGaming Startseite">
+      <img src="dmdriftgaming-logo.png" alt="">
+      <span>DMDRIFT<span>GAMING</span></span>
     </a>
-    
-    <a href="https://www.youtube.com/shorts/l5LzoTLjqV8" target="_blank" class="grid-card">
-        <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/l5LzoTLjqV8/mqdefault.jpg');"></div>
-        <div class="card-content">
-            <span class="card-tag">EILMELDUNG: Dieses Spiel ist ab HEUTE nicht mehr PS5 exklusiv!</span>
-            <h3>Wolverine Gameplay 🚨</h3>
+    <nav aria-label="Hauptnavigation">
+      <a href="#about">Über uns</a><a href="#live">Live</a><a href="#news">News</a><a href="#community">Community</a>
+    </nav>
+    <a class="header-live" href="https://twitch.tv/DMDRIFTGAMING" target="_blank" rel="noreferrer"><i></i>Twitch</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <img class="hero-art" src="dmdriftgaming-hero.png" alt="DMDriftGaming – Play. Drift. Live.">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> GAMING NEWS · STREAMING · COMMUNITY</p>
+        <h1>PLAY.<br><em>DRIFT.</em> LIVE.</h1>
+        <p class="hero-copy">Ehrliches Gaming, aktuelle News und echte Community – von Racing über Open World bis Horror und Simulatoren. Willkommen bei DMDriftGaming.</p>
+        <div class="hero-actions">
+          <a class="button button-green" href="https://twitch.tv/DMDRIFTGAMING" target="_blank" rel="noreferrer">Livestream ansehen <span>↗</span></a>
+          <a class="button button-ghost" href="https://discord.gg/gDUqPC3fw" target="_blank" rel="noreferrer">Der Crew beitreten</a>
         </div>
-    </a>
-</div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="Mehr erfahren">SCROLL <span>↓</span></a>
+    </section>
 
-    </div>
+    <section class="section intro" id="about">
+      <div><p class="section-kicker">DIE MARKE</p><h2>Mehr als nur <span>Drifting.</span></h2></div>
+      <p class="section-lead">DMDriftGaming verbindet Gaming-News, Livestreams und Technik mit einer Community, in der jeder Mensch hinter der Zahl zählt.</p>
+      <div class="meaning-grid">
+        <article><b>DM</b><h3>Deadmaster</h3><p>Der Ursprung der Marke und die Identität hinter unseren Gaming News.</p></article>
+        <article><b>DRIFT</b><h3>Flow & Vielfalt</h3><p>Racing, Open World, Survival, Horror und Simulatoren – wir driften durch Genres.</p></article>
+        <article><b>GAMING</b><h3>Das Herzstück</h3><p>Ehrliche Streams, Technikbegeisterung und gute Unterhaltung mit der Crew.</p></article>
+      </div>
+    </section>
 
-    <h2 id="news" class="section-title">DM Gaming Redaktion</h2>
-    <div class="content-block-wide">
-        <div class="redaktion-grid">
-            
-            <div class="article-box">
-                <div class="article-meta">EXKLUSIV-BERICHT // SUBNAUTICA 2</div>
-                <h3 style="font-size: 20px; margin-bottom: 10px;">Tauchgang des Grauens: Alle Leviathane enthüllt & warum Koop brandgefährlich wird!</h3>
-                <div class="article-lead">Die Ozeane auf dem neuen Planeten von Subnautica 2 bergen Geheimnisse, die selbst Veteranen das Blut gefrieren lassen. Datamining-Leaks enthüllen gigantische Monster!</div>
-                <div class="article-text">
-                    <p>Die Tiefseegräben des neuen Planeten sind tiefer und dunkler als alles, was wir bisher kannten. Ein schlangenförmiger Leviathan – intern „Phantomschlund“ genannt – nutzt hochentwickelte Tarnung und schlägt unangekündigt aus dem Nichts zu.</p>
-                    <h4>Der Koop-Modus: Pure Sabotage?</h4>
-                    <p>Mehrere Spieler bedeuten mehr Lärm und eine deutlich höhere Aufmerksamkeit der Bestien! Wer unvorsichtig mit dem Seegleiter durch die Reviere heizt, lockt die Monster direkt zur eigenen Basis. Ein einziger unüberlegter Drift deines Kumpels zerschießt die Arbeit von Stunden!</p>
-                </div>
-            </div>
-
-            <div class="article-box" style="border-color: var(--neon-cyan);">
-                <div class="article-meta" style="color: var(--neon-purple);">Game-News-Hammer // NEXT-GEN PERFORMANCE</div>
-                <h3 style="font-size: 20px; margin-bottom: 10px;">Was für ein heftiger Samstag in der Boxengasse, Freunde!</h3>
-                <div class="article-lead" style="color: var(--neon-cyan);">Die Fronten verhärten sich, und die Bugs nutzen nun die Topografie zu ihrem Vorteil – Zeit für ein taktisches Upgrade der gesamten Crew!</div>
-                <div class="article-text">
-                    <p>Was für ein heftiger Samstag in der Boxengasse, Freunde! 🏎️💨 Hiobspost für alle PC-Schrauber: Die Preise für RAM und Grafikspeicher steigen ungebremst weiter! Plant ihr aktuell ein Upgrade für euer Rig oder wartet ihr ab? 💻💥
-
-Dazu starten heute am 25. Juli der riesige Final Fantasy 14 Patch 7.55 sowie das offizielle Fan Fest durch! ⚔️🔥
-
-Und nur noch 3 Tage bis zum Release von Halo: Campaign Evolved auf PC, Xbox und PS5! 🎮</p>
-                </div>
-            </div>
-
+    <section class="live-section" id="live">
+      <div class="live-card">
+        <div class="live-visual">
+          <img src="dmdriftgaming-logo.png" alt="DMDriftGaming Logo">
+          <span class="live-chip"><i></i> LIVE ZONE</span>
         </div>
-    </div>
-
-    <h2 id="videos" class="section-title">Video Center</h2>
-<div class="content-block-wide">
-    <h3>Das offizielle Content-Archiv – Zieh dir jeden Drift rein!</h3>
-    <div class="profi-grid">
-        
-        <a href="https://youtu.be/T9kHZnOF8Ws" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/p0sQLdHY1-M/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>NVIDIA verbannt uns Gamer! 🛑 „Days of Play 2026“</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/wjyaX-3kFrM" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/FCVPblKKQQc/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>GTA 6 VORBESTELLUNG LIVE?! 🚨 Geheimer Händler-Leak!</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/SH5JX-pm1Iw" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/SH5JX-pm1Iw/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>Days of Play 2026 Mega-Check! 🎮 Exklusive Highlights!</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/FwqU4NdMH94" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/sbVGXsNRkTQ/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>SUBNAUTICA 2: 2 MIO. SALES IN 24H! 🌊 Trailer 3 am Montag?</h3></div>
-        </a>
-
-        <a href="https://youtube.com/shorts/bKl_B5osO-Q" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/tka-Vw7XE_s/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>DM GAMING DRIFT | WINDROSE CONSOLE CHECK ⚓</h3></div>
-        </a>
-
-        <a href="https://youtu.be/tka-Vw7XE_s" target="_blank" class="grid-card">
-            <div class="card-thumbnail" style="background-image: url('https://img.youtube.com/vi/D5DgpDp25M4/mqdefault.jpg');"></div>
-            <div class="card-content"><h3>Das Ende von Intel Arc? 🛑 Diablo 4 Lord of Hatred ist DA!</h3></div>
-        </a>
-
-    </div>
-</div>
-
-    <h2 id="merch" class="section-title">DM Crew Fan-Shop</h2>
-    <div class="content-block-wide">
-        <h3>Hol dir das offizielle DM Gaming Gear!</h3>
-        <div class="profi-grid">
-            <div class="merch-card">
-    <img src="DM Hoddi.png" alt="DM Gaming Hoodie" class="merch-icon">
-    <h4>DM Gaming Crew Hoodie</h4>
-    <p class="merch-price">49,99 €</p>
-    <a href="mailto:info@drift-gaming.de?subject=Bestellung:%20Hoodie" class="drift-button">Jetzt sichern!</a>
-</div>
-            <div class="merch-card">
-    <img src="DM Cap.png" alt="Drift Master Cap" class="merch-icon">
-    <h4>Drift Master Cap</h4>
-    <p class="merch-price">24,99 €</p>
-    <a href="mailto:info@drift-gaming.de?subject=Bestellung:%20Cap" class="drift-button">Jetzt sichern!</a>
-</div>
-            <div class="merch-card">
-    <img src="DM_Tasse.png" alt="DM Premium Tasse" class="merch-icon">
-    <h4>DM Premium Tasse</h4>
-    <p class="merch-price">14,99 €</p>
-    <a href="mailto:info@drift-gaming.de?subject=Bestellung:%20Tasse" class="drift-button">Jetzt sichern!</a>
-</div>
+        <div class="live-info">
+          <p class="section-kicker red">LIVE & DIREKT</p>
+          <h2>Abends wird<br>gemeinsam gezockt.</h2>
+          <p>Variety Gaming, spontane Reaktionen und echte Gespräche mit dem Chat. Ohne Show – dafür mit Persönlichkeit, Spaß und Vollgas.</p>
+          <div class="schedule"><span>STREAMZEIT</span><strong>Täglich ab 20:00 Uhr</strong></div>
+          <div class="split-actions">
+            <a class="button button-red" href="https://twitch.tv/DMDRIFTGAMING" target="_blank" rel="noreferrer">Auf Twitch ansehen <span>↗</span></a>
+            <a class="text-link" href="https://www.youtube.com/@The_DeadMaster" target="_blank" rel="noreferrer">YouTube öffnen ↗</a>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <div class="ticker-wrapper">
-        <div class="ticker-text">
-            LIVE-NEWS:+++ GTA 6 Release am 19. November 2026 offiziell bestätigt! GTA 6 Controller Ab 01.08.2026 Vorbestellen & Ab 01.10.2026 Auslieferung 🚨 +++ LEAK: Gothic 1 Remake Gameplay & Stalker 2 DLC! 😱 +++ SQUADRON 42 SHOWDOWN GELEAKT?!🎮 +++ PATH OF EXILE 2: Neues Riesen-Update bricht mit Endlos-Grind und bringt echtes Story-Ende! 🌊 +++ JOIN THE CREW! +++ HELLDIVERS 2: NEUE TAKTIKEN GEGEN DEN BUG-ANSTURM +++
-        </div>
-    </div>
+    <section class="section news-section" id="news">
+      <div class="section-head">
+        <div><p class="section-kicker">CONTENT</p><h2>News. Streams. <span>Vielfalt.</span></h2></div>
+        <a class="text-link" href="https://www.youtube.com/@The_DeadMaster" target="_blank" rel="noreferrer">Alle Videos ↗</a>
+      </div>
+      <div class="content-grid">
+        <a class="content-card feature" href="https://www.youtube.com/@The_DeadMaster" target="_blank" rel="noreferrer"><div class="card-number">01</div><div><span>GAMING NEWS</span><h3>Aktuelle Gaming-News – verständlich, direkt und mit eigener Meinung.</h3><p>Auf YouTube ansehen ↗</p></div></a>
+        <a class="content-card" href="https://twitch.tv/DMDRIFTGAMING" target="_blank" rel="noreferrer"><div class="card-number">02</div><div><span>LIVE STREAMING</span><h3>Gemeinsam spielen statt nur zuschauen.</h3><p>Auf Twitch ansehen ↗</p></div></a>
+        <a class="content-card" href="https://www.tiktok.com/@gamingdriftnews" target="_blank" rel="noreferrer"><div class="card-number">03</div><div><span>SHORT CONTENT</span><h3>Gaming-News und Highlights für zwischendurch.</h3><p>Auf TikTok ansehen ↗</p></div></a>
+      </div>
+    </section>
 
+    <section class="community" id="community">
+      <div class="community-glow"></div>
+      <img src="dmdriftgaming-logo.png" alt="">
+      <div class="community-copy">
+        <p class="section-kicker">DMDRIFTGAMING CREW</p>
+        <h2>Du musst nicht nur<br>zuschauen. <span>Sei dabei.</span></h2>
+        <p>Im Discord treffen sich Gaming-Fans, Stream-Zuschauer und alle, die Lust auf eine entspannte Community haben. News, Live-Benachrichtigungen und direkter Austausch inklusive.</p>
+        <a class="button button-green" href="https://discord.gg/gDUqPC3fw" target="_blank" rel="noreferrer">Discord beitreten <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="social-section">
+      <p class="section-kicker">FOLLOW THE DRIFT</p>
+      <div class="social-links">
+        <a href="https://www.youtube.com/@The_DeadMaster" target="_blank" rel="noreferrer"><span>YouTube</span><small>@The_DeadMaster</small><b>↗</b></a>
+        <a href="https://www.tiktok.com/@gamingdriftnews" target="_blank" rel="noreferrer"><span>TikTok</span><small>@gamingdriftnews</small><b>↗</b></a>
+        <a href="https://www.instagram.com/dmgaming_news_drift_/" target="_blank" rel="noreferrer"><span>Instagram</span><small>@dmgaming_news_drift_</small><b>↗</b></a>
+        <a href="https://twitch.tv/DMDRIFTGAMING" target="_blank" rel="noreferrer"><span>Twitch</span><small>@DMDRIFTGAMING</small><b>↗</b></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand"><img src="dmdriftgaming-logo.png" alt=""><strong>DMDRIFTGAMING</strong></div>
+    <p>PLAY. <span>DRIFT.</span> LIVE.</p>
+    <small>© 2026 DMDriftGaming · Alle Rechte vorbehalten.</small>
+  </footer>
 </body>
 </html>
